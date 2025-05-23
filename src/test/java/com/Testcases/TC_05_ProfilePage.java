@@ -29,7 +29,7 @@ public class TC_05_ProfilePage extends MobileAppWrappers{
 	String radius =loadProp("RADIUS");
 	String address =loadProp("ADDRESS");
 	
-	@Test(priority = 0)
+	@Test(priority = 4)
 	public void removerepair() throws Exception {
 		initAndriodDriver();
 		loginpage= new Login_Page(driver);
