@@ -25,7 +25,7 @@ public class TC_04_HOMEPAGE extends MobileAppWrappers{
 	String Mobilenumber =loadProp("MOBILENUMBER");
 	
 	
-	@Test(priority = 0)
+	@Test(priority = 3)
 	public void removerepair() throws Exception {
 		initAndriodDriver();
 		loginpage= new Login_Page(driver);
