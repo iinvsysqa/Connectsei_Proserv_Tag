@@ -249,6 +249,32 @@ public class GenericWrappers {
 		}
 	}
 	
+	public void Connectsei_uninstall_reinstall() throws Exception {
+		Properties prop =new Properties();
+		prop.load(new FileInputStream(new File("./config.properties")));
+		
+		if (driver.isAppInstalled(loadProp("CONNECTSEI_APP_PACKAGE"))) {
+			Runtime.getRuntime().exec("adb uninstall com.iinvsys.connectsei");
+			driver.installApp(prop.getProperty("CONNECTSEI_APP_PATH"));
+			driver.activateApp(loadProp("CONNECTSEI_APP_PACKAGE"));
+			Runtime.getRuntime().exec("adb shell pm grant com.iinvsys.connectsei android.permission.ACCESS_FINE_LOCATION");
+			Runtime.getRuntime().exec("adb shell pm grant com.iinvsys.connectsei android.permission.BLUETOOTH_SCAN");
+			Runtime.getRuntime().exec("adb shell pm grant com.iinvsys.connectsei android.permission.BLUETOOTH_CONNECT");
+			Runtime.getRuntime().exec("adb shell pm grant com.iinvsys.connectsei android.permission.CAMERA");
+			Runtime.getRuntime().exec("adb shell pm grant com.iinvsys.connectsei android.permission.POST_NOTIFICATIONS");
+		}
+		else {
+			
+			driver.installApp(prop.getProperty("CONNECTSEI_APP_PATH"));
+			driver.activateApp(loadProp("CONNECTSEI_APP_PACKAGE"));
+			Runtime.getRuntime().exec("adb shell pm grant com.iinvsys.connectsei android.permission.ACCESS_FINE_LOCATION");
+			Runtime.getRuntime().exec("adb shell pm grant com.iinvsys.connectsei android.permission.BLUETOOTH_SCAN");
+			Runtime.getRuntime().exec("adb shell pm grant com.iinvsys.connectsei android.permission.BLUETOOTH_CONNECT");
+			Runtime.getRuntime().exec("adb shell pm grant com.iinvsys.connectsei android.permission.CAMERA");
+			Runtime.getRuntime().exec("adb shell pm grant com.iinvsys.connectsei android.permission.POST_NOTIFICATIONS");
+		}
+	}
+	
 	//	public boolean invokeApp(String browser,String url) {
 	//		boolean bReturn = false;
 	//		try {

@@ -452,4 +452,18 @@ public class Register_page extends GenericWrappers{
 		 Connecsei_deleteAccount();
 		 popup_okBtn();
 	   }
+	   
+	   public void registeraccount(String username,String Lastname,String Mobilenumber,String Password) {
+		clickRegisterLink();
+		enterFirstName(username);
+		enterLastName(Lastname);
+		enterMobileNumber(Mobilenumber);
+		enterPassword(Password);
+		enterConfirmPassword(Password);
+		clickCheckbox();
+		clickRegisterButton();
+		OTPtitlecheck();
+		enterOTP();
+		checknotificationbutton();
+	}
 }
