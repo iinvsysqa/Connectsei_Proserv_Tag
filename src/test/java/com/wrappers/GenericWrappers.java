@@ -474,7 +474,7 @@ public class GenericWrappers {
 	public static void expWait(WebElement xpath) {
 		try {
 
-			WebDriverWait wait = new WebDriverWait(driver,5);
+			WebDriverWait wait = new WebDriverWait(driver,10);
 			wait.until(ExpectedConditions.elementToBeClickable(xpath));
 //			wait.until(ExpectedConditions.visibilityOf(xpath));
 		} catch (Exception e) {
@@ -488,7 +488,7 @@ public class GenericWrappers {
 	public static void expshortWait(WebElement xpath) {
 		try {
 			
-			WebDriverWait wait = new WebDriverWait(driver,5);
+			WebDriverWait wait = new WebDriverWait(driver,10);
 			wait.until(ExpectedConditions.elementToBeClickable(xpath));
 			
 //			wait.until(ExpectedConditions.visibilityOf(xpath));
@@ -503,7 +503,7 @@ public class GenericWrappers {
 	public static void expshortWaittwenty(WebElement xpath) {
 		try {
 			
-			WebDriverWait wait = new WebDriverWait(driver,5);
+			WebDriverWait wait = new WebDriverWait(driver,10);
 			wait.until(ExpectedConditions.elementToBeClickable(xpath));
 //			wait.until(ExpectedConditions.visibilityOf(xpath));
 		} catch (Exception e) {
@@ -517,7 +517,7 @@ public class GenericWrappers {
 
 	public void expWaitforPairing(WebElement xpath) {
 		try {
-			WebDriverWait wait = new WebDriverWait(driver,5);
+			WebDriverWait wait = new WebDriverWait(driver,10);
 //			wait.until(ExpectedConditions.visibilityOf(xpath));
 			wait.until(ExpectedConditions.elementToBeClickable(xpath));
 		} catch (Exception e) {
