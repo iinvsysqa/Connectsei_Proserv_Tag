@@ -58,7 +58,7 @@ public class Notification_page extends GenericWrappers{
 	private WebElement MyOrderTitle;
 	@FindBy(xpath = "//*[@resource-id='SomethingWentWrongText']")
 	private WebElement somethingWentWrong;
-	@FindBy(xpath = "//*[@resource-id='RetryButton']")
+	@FindBy(xpath = "//*[@resource-id='ReloadSVG']")
 	private WebElement reloadicon;
 	@FindBy(xpath = "//*[@resource-id='EditedAddress']") //Thattanchavady Puducherry Puducherry 605013
 	private WebElement Home_address;

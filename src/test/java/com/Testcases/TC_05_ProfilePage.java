@@ -17,8 +17,8 @@ public class TC_05_ProfilePage extends MobileAppWrappers{
 	Profile_page profilepage;
 	@BeforeClass
 	public void startTestCase() {
-		testCaseName = "TC01_Login";
-		testDescription = "Try to login with username";
+		testCaseName = "TC_05_ProfilePage";
+		testDescription = "check the Profile page all buttons functionality ";
 	}
 	
 	String username =loadProp("USERNAME");

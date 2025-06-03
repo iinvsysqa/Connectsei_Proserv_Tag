@@ -454,6 +454,7 @@ public class Register_page extends GenericWrappers{
 	   }
 	   
 	   public void registeraccount(String username,String Lastname,String Mobilenumber,String Password) {
+		  setLoadProp("MOBILENUMBER_CONNECTSEI_2", randomnumbers(10));
 		clickRegisterLink();
 		enterFirstName(username);
 		enterLastName(Lastname);

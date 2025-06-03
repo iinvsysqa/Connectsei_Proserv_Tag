@@ -21,8 +21,8 @@ public class TC_01_Register extends MobileAppWrappers{
 	
 	@BeforeClass
 	public void startTestCase() {
-		testCaseName = "TC01_Login";
-		testDescription = "Try to login with username";
+		testCaseName = "TC01_Register";
+		testDescription = "Try to Register a new service person ";
 	}
 	
 	String username =loadProp("USERNAME");
@@ -38,8 +38,10 @@ public class TC_01_Register extends MobileAppWrappers{
 		registerpage = new Register_page(driver);
 		notificationPage= new Notification_page(driver);
 		try {
-			
+			registerpage.WifiSwitch(loadProp("WIFINAME"), loadProp("WIFIPASSWORD"));
 			//check for error toast 
+			setLoadProp("MOBILENUMBER",randomnumbers(10));
+			System.out.println(loadProp("MOBILENUMBER"));
 			registerpage.clickRegisterLink();
 			registerpage.clickRegisterButton();
 			registerpage.checkFirstname_errormsg();

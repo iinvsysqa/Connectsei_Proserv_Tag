@@ -14,8 +14,8 @@ public class TC_02_Login extends MobileAppWrappers{
 	
 	@BeforeClass
 	public void startTestCase() {
-		testCaseName = "TC01_Login";
-		testDescription = "Try to login with username";
+		testCaseName = "TC02_Login";
+		testDescription = "Try to login with already registered username";
 	}
 	
 	String username =loadProp("USERNAME");

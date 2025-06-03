@@ -3,18 +3,18 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.Testcases.TC_01_Register">
+      <class name="com.Testcases.TC_06_BookingFlow">
         <methods>
+          <include name="removerepair"/>
           <include name="beforeMethod"/>
           <include name="afterTest"/>
           <include name="startTestCase"/>
           <include name="beforeSuite"/>
-          <include name="removerepair"/>
           <include name="afterSuite"/>
           <include name="afterMethod"/>
           <include name="beforeTest"/>
         </methods>
-      </class> <!-- com.Testcases.TC_01_Register -->
+      </class> <!-- com.Testcases.TC_06_BookingFlow -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

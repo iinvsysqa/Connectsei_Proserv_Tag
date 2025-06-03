@@ -15,8 +15,8 @@ public class TC_03_ForgetPassword extends MobileAppWrappers{
 	
 	@BeforeClass
 	public void startTestCase() {
-		testCaseName = "TC01_Login";
-		testDescription = "Try to login with username";
+		testCaseName = "TC03_ForgetPassword";
+		testDescription = "Try to change the password of the already registered user";
 	}
 	
 	String username =loadProp("USERNAME");

@@ -15,8 +15,8 @@ public class TC_04_HOMEPAGE extends MobileAppWrappers{
 	Notification_page notificationPage;
 	@BeforeClass
 	public void startTestCase() {
-		testCaseName = "TC01_Login";
-		testDescription = "Try to login with username";
+		testCaseName = "TC04_HOMEPAGE";
+		testDescription = "Check  the Notification and My order page ";
 	}
 	
 	String username =loadProp("USERNAME");
