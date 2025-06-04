@@ -31,7 +31,7 @@ public class TC_02_Login extends MobileAppWrappers{
 		registerpage = new Register_page(driver);
 		
 		try {
-			
+			registerpage.WifiSwitch(loadProp("WIFINAME"), loadProp("WIFIPASSWORD"),loadProp("APP_PACKAGE"));
 			uninstall_reinstall();
 			loginpage.enterMobileno(randomnumbers(10));
 			loginpage.enterPassword("User"+"@#"+randomnumbers(3));

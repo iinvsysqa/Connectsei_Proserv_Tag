@@ -59,7 +59,7 @@ public class TC_03_ForgetPassword extends MobileAppWrappers{
 			loginpage.verifyMyProfiletitle();
 			
 			loginpage.turnOnWifi();
-			registerpage.WifiSwitch(loadProp("WIFINAME"), loadProp("WIFIPASSWORD"));
+			registerpage.WifiSwitch(loadProp("WIFINAME"), loadProp("WIFIPASSWORD"),loadProp("APP_PACKAGE"));
 			loginpage.clickLogoutbtn();
 			registerpage.popup_okBtn();
 			loginpage.verifyLogoutToast();

@@ -4,10 +4,12 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.ProservPages.ConnectSei_Home_page;
+import com.ProservPages.Home_page;
 import com.ProservPages.Login_Page;
 import com.ProservPages.Notification_page;
 import com.ProservPages.Profile_page;
 import com.ProservPages.Register_page;
+import com.ProservPages.Serviceareazone_page;
 import com.wrappers.MobileAppWrappers;
 
 public class TC_06_BookingFlow extends MobileAppWrappers{
@@ -17,6 +19,9 @@ public class TC_06_BookingFlow extends MobileAppWrappers{
 	Notification_page notificationPage;
 	Profile_page profilepage;
 	ConnectSei_Home_page connectseiHomepage;
+	Home_page homepage;
+	Serviceareazone_page serviceareazone;
+	
 	@BeforeClass
 	public void startTestCase() {
 		testCaseName = "TC_06_BookingFlow";
@@ -25,7 +30,7 @@ public class TC_06_BookingFlow extends MobileAppWrappers{
 	
 	String username =loadProp("USERNAME_CONNECTSEI_2");
 	String Lastname =loadProp("USERNAME_CONNECTSEI_2");
-	String mobilenumber=loadProp("MOBILENUMBER_CONNECTSEI_2");
+//	String mobilenumber=loadProp("MOBILENUMBER_CONNECTSEI_2");
 	String Password =loadProp("PASSWORD");
 //	String email =loadProp("EMAILID");
 	
@@ -40,33 +45,99 @@ public class TC_06_BookingFlow extends MobileAppWrappers{
 		notificationPage= new Notification_page(driver);
 		profilepage=new Profile_page(driver);
 		connectseiHomepage=new ConnectSei_Home_page(driver);
-		
+		homepage = new Home_page(driver);
+		serviceareazone = new Serviceareazone_page(driver);
 		try {
 			//installing connectsei to raising product issue  
-			Connectsei_uninstall_reinstall();
-			registerpage.registeraccount(username, Lastname, mobilenumber, Password);
-			connectseiHomepage.clickACproduct();
-			connectseiHomepage.addDescription();
-			registerpage.scrollToText("08 - 09 PM");
-			connectseiHomepage.clickonDatebutton();
-			connectseiHomepage.clickonSlotbutton();
-			connectseiHomepage.clickNextbutton();
-			disableWiFi();
-			connectseiHomepage.clickBooknow();
-			notificationPage.verifyNointernetMsg();
+//			Connectsei_uninstall_reinstall();
+//			registerpage.registeraccount(username, Lastname, Password);
+//			connectseiHomepage.clickACproduct();
+//			connectseiHomepage.addDescription();
+//			registerpage.scrollToText("08 - 09 PM");
+//			connectseiHomepage.clickonDatebutton();
+//			connectseiHomepage.clickonSlotbutton();
+//			connectseiHomepage.clickNextbutton();
+//			disableWiFi();
+//			connectseiHomepage.clickBooknow();
+//			notificationPage.verifyNointernetMsg();
+//			
+//			enableWiFi();
+//			registerpage.WifiSwitch(loadProp("WIFINAME"), loadProp("WIFIPASSWORD"),loadProp("CONNECTSEI_APP_PACKAGE"));
+//			notificationPage.clickReloadicon();
+//			connectseiHomepage.clickBooknow();
+//			
+//			connectseiHomepage.clickPop_upOk();//not working 
+//			registerpage.checknotificationbutton();
 			
-			enableWiFi();
-			registerpage.WifiSwitch(loadProp("WIFINAME"), loadProp("WIFIPASSWORD"));
-			notificationPage.clickReloadicon();
-			connectseiHomepage.clickBooknow();
-			
-			connectseiHomepage.clickPop_upOk();
-			registerpage.checknotificationbutton();
 			
 			//check proserv for recieved job for push notification 
 			//check proserv hompage and for recieved job user name and product is same as customer sent or not
-			//make service person offline and again raise issue from cutomer ,make service person online and check for that job request 
+//			uninstall_reinstall();
+//			loginpage.login();
+			
+			//verifying KYC
+//			registerpage.clickProfileIcon();
+//			profilepage.clickonKYC();
+//			profilepage.enterAadharno();
+//			profilepage.clickCheckbox();
+//			profilepage.clickVerifybtn();
+//			registerpage.OTPtitlecheck();
+//			profilepage.enterAadhaarOTP();
+//			profilepage.verifyKYCverificationtitle();
+//			
+//			registerpage.clickSubmitBtn();
+//			profilepage.checkPanErrormsg();
+//			profilepage.checkAccountnoErrormsg();
+//			profilepage.checkIFSCerrormsg();
+//			
+//			
+//			profilepage.enterPANnumber();
+//			profilepage.enterAccountnumber();
+//			profilepage.enterIFSCcode();
+//			registerpage.clickSubmitBtn();
+//			profilepage.navigateback();
+//			profilepage.verifyMyProfileTitle();
+			
+			homepage.clickHomeicon();
+			homepage.checkAvailablejobstitle();
 			//change service person location and check that previous job location jobs are showing or not
+			homepage.checkUsersentjob("Ac",username);
+			 
+			//changing another location
+			notificationPage.clickAddressarrow();
+			serviceareazone.clickLocationchnageButton();
+			serviceareazone.enteranotherLocation();
+			registerpage.clickMoredetails();
+			registerpage.Flatfield();
+			registerpage.clickSaveBtn();
+			serviceareazone.swipedown();
+			homepage.checkOldLocationJob("Ac",username);
+			
+			//changing current  location
+			notificationPage.clickAddressarrow();
+			serviceareazone.clickLocationchnageButton();
+			serviceareazone.useCurrentLocation();
+			registerpage.clickMoredetails();
+			registerpage.Flatfield();
+			registerpage.clickSaveBtn();
+			serviceareazone.swipedown();
+			homepage.checkUsersentjob("Ac",username);
+			
+			//make service person offline and again raise issue from cutomer ,make service person online and check for that job request 
+			homepage.changeOffline();
+			homepage.checkOfflineTogglestate();
+			homepage.checkNojobPlaceholder();
+			homepage.changeOnline();
+			homepage.confirmAvailablejob("Ac",username);
+			
+			
+			
+			
+			
+			
+			
+			//if service person changed the location check that previous locations showing or not 
+			//change the service person job from AC-FAN and from user send AC service request and check service person recieving that job or not 
 			//
 			 //need to delete connectsei account after issue resolved by service person
 			

@@ -115,9 +115,8 @@ public class TC_05_ProfilePage extends MobileAppWrappers{
 			profilepage.enterPANnumber();
 			profilepage.enterAccountnumber();
 			profilepage.enterIFSCcode();
-			profilepage.clickCheckbox();
-			profilepage.clickVerifybtn();
 			registerpage.clickSubmitBtn();
+			profilepage.navigateback();
 			profilepage.verifyMyProfileTitle();
 			
 			profilepage.clickonAwards_Certificate();

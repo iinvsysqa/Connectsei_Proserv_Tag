@@ -394,7 +394,7 @@ public class Register_page extends GenericWrappers{
 	public void verifydeleteAccountToast() {
 		clickbyXpath(AccountDeletedToast, "Account Deleted Toast");
 	}
-	   public void WifiSwitch(String Wifiname,String Wifipassword) throws Exception 
+	   public void WifiSwitch(String Wifiname,String Wifipassword,String packages) throws Exception 
 	   {
 		   
 		   connectToWiFi(Wifiname, Wifipassword);
@@ -442,23 +442,24 @@ public class Register_page extends GenericWrappers{
 		 DeleteAccount();
 		 popup_okBtn();
 		
-		 ConnectseiApp();
+		 Connectsei_uninstall_reinstall();
 		 Connectsei_entermobileno(Mobilenumber);
 		 Connectsei_enterPassword(Password);
 		 Connecsei_clickLogin();
 //		 popup_okBtn,();
-		 checkHomepageAdvertisement();
+		 checknotificationbutton();
 		 clickProfileIcon();
 		 Connecsei_deleteAccount();
 		 popup_okBtn();
 	   }
 	   
-	   public void registeraccount(String username,String Lastname,String Mobilenumber,String Password) {
-		  setLoadProp("MOBILENUMBER_CONNECTSEI_2", randomnumbers(10));
+	   public void registeraccount(String username,String Lastname,String Password) {
+		  setLoadProp("MOBILENUMBER_CONNECTSEI_2", 9+randomnumbers(9));
+		  System.out.println(loadProp("MOBILENUMBER_CONNECTSEI_2"));
 		clickRegisterLink();
 		enterFirstName(username);
 		enterLastName(Lastname);
-		enterMobileNumber(Mobilenumber);
+		enterMobileNumber(loadProp("MOBILENUMBER_CONNECTSEI_2"));
 		enterPassword(Password);
 		enterConfirmPassword(Password);
 		clickCheckbox();

@@ -51,7 +51,7 @@ public class TC_04_HOMEPAGE extends MobileAppWrappers{
 			notificationPage.verifyNointernetMsg();
 			
 			registerpage.enableWiFi();
-			registerpage.WifiSwitch(loadProp("WIFINAME"), loadProp("WIFIPASSWORD"));
+			registerpage.WifiSwitch(loadProp("WIFINAME"), loadProp("WIFIPASSWORD"),loadProp("APP_PACKAGE"));
 			notificationPage.clickReloadicon();
 			notificationPage.clickMyorderIcon();
 			notificationPage.verifyMyOrderTitle();

@@ -28,7 +28,7 @@ public class TC_01_Register extends MobileAppWrappers{
 	String username =loadProp("USERNAME");
 	String Lastname =loadProp("LASTNAME");
 	String Password =loadProp("PASSWORD");
-	String Mobilenumber =loadProp("MOBILENUMBER");
+//	String Mobilenumber =loadProp("MOBILENUMBER");
 	
 	
 	@Test(priority = 0)
@@ -38,9 +38,10 @@ public class TC_01_Register extends MobileAppWrappers{
 		registerpage = new Register_page(driver);
 		notificationPage= new Notification_page(driver);
 		try {
-			registerpage.WifiSwitch(loadProp("WIFINAME"), loadProp("WIFIPASSWORD"));
+			registerpage.WifiSwitch(loadProp("WIFINAME"), loadProp("WIFIPASSWORD"),loadProp("APP_PACKAGE"));
 			//check for error toast 
-			setLoadProp("MOBILENUMBER",randomnumbers(10));
+			uninstall_reinstall();
+			setLoadProp("MOBILENUMBER",9+randomnumbers(9));
 			System.out.println(loadProp("MOBILENUMBER"));
 			registerpage.clickRegisterLink();
 			registerpage.clickRegisterButton();
@@ -52,7 +53,7 @@ public class TC_01_Register extends MobileAppWrappers{
 			//register with all valid details 
 			registerpage.enterFirstName(username);
 			registerpage.enterLastName(Lastname);
-			registerpage.enterMobileNumber(Mobilenumber);
+			registerpage.enterMobileNumber(loadProp("MOBILENUMBER"));
 			registerpage.enterPassword(Password);
 			registerpage.enterConfirmPassword(Password);
 			registerpage.clickCheckbox();
