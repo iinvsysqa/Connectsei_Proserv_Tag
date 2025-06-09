@@ -26,8 +26,8 @@ public class TC_05_ProfilePage extends MobileAppWrappers{
 	String Password =loadProp("PASSWORD");
 	String Mobilenumber =loadProp("MOBILENUMBER");
 	String email =loadProp("EMAILID");
-	String radius =loadProp("RADIUS");
-	String address =loadProp("ADDRESS");
+	String radius =loadProp("RADIUSRANGE");
+	String address =loadProp("HOMEADDRESS");
 	
 	@Test(priority = 4)
 	public void removerepair() throws Exception {
@@ -64,6 +64,7 @@ public class TC_05_ProfilePage extends MobileAppWrappers{
 //			profilepage.clickGenerateOTPbtn(),,;
 //			profilepage.verifyOTPfielderrormsg(),,;
 			profilepage.clearMobilenoField();
+			profilepage.clickGenerateOTPbtn();
 			profilepage.verifyMobilenoErrormsg();
 			registerpage.enterRandomMobileNumber();
 			profilepage.clickGenerateOTPbtn();

@@ -39,6 +39,8 @@ public class ConnectSei_Home_page extends GenericWrappers{
 	private WebElement Nextbutton;
 	@FindBy(xpath = "//*[@resource-id='Book NowText']") 
 	private WebElement Book_NowText;
+	@FindBy(xpath = "//*[@resource-id='SearchServiceText']") 
+	private WebElement Connectsei_SearchInput;
 	@FindBy(xpath = "//android.widget.TextView[@text=\"OK\"]")
 	private WebElement OkButton;
 //	@FindBy(xpath = "//*[@resource-id='SlotButton0']") 
@@ -85,5 +87,8 @@ public class ConnectSei_Home_page extends GenericWrappers{
 	}
 	public void clickPop_upOk() {
 		clickbyXpath(OkButton, "Pop-UP ok button");
+	}
+	public void Connectsei_SearchInput() {
+		verifyTextContainsByXpath(Connectsei_SearchInput, "Search service here...", "Connectsei search box");
 	}
 }

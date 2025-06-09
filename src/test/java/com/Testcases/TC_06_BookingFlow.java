@@ -28,8 +28,8 @@ public class TC_06_BookingFlow extends MobileAppWrappers{
 		testDescription = "check Booking flow of User and Service person for recieved order";
 	}
 	
-	String username =loadProp("USERNAME_CONNECTSEI_2");
-	String Lastname =loadProp("USERNAME_CONNECTSEI_2");
+	String connectsei_username =loadProp("USERNAME_CONNECTSEI_2");
+	String connectsei_Lastname =loadProp("USERNAME_CONNECTSEI_2");
 //	String mobilenumber=loadProp("MOBILENUMBER_CONNECTSEI_2");
 	String Password =loadProp("PASSWORD");
 //	String email =loadProp("EMAILID");
@@ -49,70 +49,66 @@ public class TC_06_BookingFlow extends MobileAppWrappers{
 		serviceareazone = new Serviceareazone_page(driver);
 		try {
 			//installing connectsei to raising product issue  
-//			Connectsei_uninstall_reinstall();
-//			registerpage.registeraccount(username, Lastname, Password);
-//			connectseiHomepage.clickACproduct();
-//			connectseiHomepage.addDescription();
-//			registerpage.scrollToText("08 - 09 PM");
-//			connectseiHomepage.clickonDatebutton();
-//			connectseiHomepage.clickonSlotbutton();
-//			connectseiHomepage.clickNextbutton();
-//			disableWiFi();
-//			connectseiHomepage.clickBooknow();
+			Connectsei_uninstall_reinstall();
+			registerpage.registeraccount(connectsei_username, connectsei_Lastname, Password);
+			connectseiHomepage.clickACproduct();
+			connectseiHomepage.addDescription();
+			registerpage.scrollToText("08 - 09 PM");
+			connectseiHomepage.clickonDatebutton();
+			connectseiHomepage.clickonSlotbutton();
+			connectseiHomepage.clickNextbutton();
+//			disableWiFi(); //9499812441 Samuel Samuel
+			connectseiHomepage.clickBooknow();
 //			notificationPage.verifyNointernetMsg();
-//			
-//			enableWiFi();
+			
+			enableWiFi();
 //			registerpage.WifiSwitch(loadProp("WIFINAME"), loadProp("WIFIPASSWORD"),loadProp("CONNECTSEI_APP_PACKAGE"));
 //			notificationPage.clickReloadicon();
 //			connectseiHomepage.clickBooknow();
-//			
-//			connectseiHomepage.clickPop_upOk();//not working 
-//			registerpage.checknotificationbutton();
 			
+			Thread.sleep(3000);
+			serviceareazone.tap();//not working 
+			connectseiHomepage.Connectsei_SearchInput();
 			
 			//check proserv for recieved job for push notification 
 			//check proserv hompage and for recieved job user name and product is same as customer sent or not
-//			uninstall_reinstall();
-//			loginpage.login();
-			
+			uninstall_reinstall();
+			loginpage.login();
+			registerpage.Relogin_deletedAcnt();
 			//verifying KYC
-//			registerpage.clickProfileIcon();
-//			profilepage.clickonKYC();
-//			profilepage.enterAadharno();
-//			profilepage.clickCheckbox();
-//			profilepage.clickVerifybtn();
-//			registerpage.OTPtitlecheck();
-//			profilepage.enterAadhaarOTP();
-//			profilepage.verifyKYCverificationtitle();
-//			
-//			registerpage.clickSubmitBtn();
-//			profilepage.checkPanErrormsg();
-//			profilepage.checkAccountnoErrormsg();
-//			profilepage.checkIFSCerrormsg();
-//			
-//			
-//			profilepage.enterPANnumber();
-//			profilepage.enterAccountnumber();
-//			profilepage.enterIFSCcode();
-//			registerpage.clickSubmitBtn();
-//			profilepage.navigateback();
-//			profilepage.verifyMyProfileTitle();
 			
-			homepage.clickHomeicon();
+			  registerpage.clickProfileIcon(); profilepage.clickonKYC();
+			  profilepage.enterAadharno(); profilepage.clickCheckbox();
+			  profilepage.clickVerifybtn(); registerpage.OTPtitlecheck();
+			  profilepage.enterAadhaarOTP(); profilepage.verifyKYCverificationtitle();
+			  
+			  registerpage.clickSubmitBtn(); profilepage.checkPanErrormsg();
+			  profilepage.checkAccountnoErrormsg(); profilepage.checkIFSCerrormsg();
+			  
+			  
+			  profilepage.enterPANnumber(); profilepage.enterAccountnumber();
+			  profilepage.enterIFSCcode(); registerpage.clickSubmitBtn();
+			  profilepage.navigateback(); profilepage.verifyMyProfileTitle();
+			  
+			  homepage.clickHomeicon();
+			 
 			homepage.checkAvailablejobstitle();
-			//change service person location and check that previous job location jobs are showing or not
-			homepage.checkUsersentjob("Ac",username);
+			//change service person location and check that previous job location -jobs are showing or not
+			homepage.checkUsersentjob("Ac",connectsei_username);
 			 
 			//changing another location
 			notificationPage.clickAddressarrow();
 			serviceareazone.clickLocationchnageButton();
 			serviceareazone.enteranotherLocation();
+			serviceareazone.swipeup();
 			registerpage.clickMoredetails();
 			registerpage.Flatfield();
 			registerpage.clickSaveBtn();
 			serviceareazone.swipedown();
-			homepage.checkOldLocationJob("Ac",username);
+			Thread.sleep(5000);
+			homepage.checkOldLocationJob("Ac",connectsei_username);
 			
+			//if service person changed to current location check that previous locations job showing or not 
 			//changing current  location
 			notificationPage.clickAddressarrow();
 			serviceareazone.clickLocationchnageButton();
@@ -121,14 +117,14 @@ public class TC_06_BookingFlow extends MobileAppWrappers{
 			registerpage.Flatfield();
 			registerpage.clickSaveBtn();
 			serviceareazone.swipedown();
-			homepage.checkUsersentjob("Ac",username);
+			homepage.checkUsersentjob("Ac",connectsei_username);
 			
 			//make service person offline and again raise issue from cutomer ,make service person online and check for that job request 
 			homepage.changeOffline();
 			homepage.checkOfflineTogglestate();
 			homepage.checkNojobPlaceholder();
 			homepage.changeOnline();
-			homepage.confirmAvailablejob("Ac",username);
+			homepage.confirmAvailablejob("Ac",connectsei_username);
 			
 			
 			
@@ -136,12 +132,9 @@ public class TC_06_BookingFlow extends MobileAppWrappers{
 			
 			
 			
-			//if service person changed the location check that previous locations showing or not 
-			//change the service person job from AC-FAN and from user send AC service request and check service person recieving that job or not 
-			//
 			 //need to delete connectsei account after issue resolved by service person
 			
-			registerpage.deleteAccount();
+//			registerpage.deleteAccount();//unable to delete account if service person or user has current job
 			
 		}catch (Exception e) {
 			System.out.println(e);

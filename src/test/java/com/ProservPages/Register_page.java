@@ -167,7 +167,10 @@ public class Register_page extends GenericWrappers{
 	private WebElement EditAddress_AddAddressText_afterregister;
 	@FindBy(xpath = "//*[@resource-id='Status_text']") 
 	private WebElement HomepageStatustext;
-		
+	@FindBy(xpath = "//*[@resource-id='DownArrowSVG']")
+	private WebElement AddressDownArrow;
+	@FindBy(xpath = "//*[@resource-id='Edit AddressTitle']")
+	private WebElement EditAddressTitle;
 	
 //	@FindBy(xpath = "//*[@resource-id='Confirm OTPText']")
 //	private WebElement Confirm_OTPText;
@@ -435,6 +438,13 @@ public class Register_page extends GenericWrappers{
 	   public void checknotificationbutton() {
 		  verifyTextContainsByXpath(HomepageStatustext, "Status:", "Home page Status text") ;
 	}
+	   
+	   public void clickAddressarrow() {
+			clickbyXpath(AddressDownArrow, "AddressDownArrow");
+		}
+		public void verifyAddressTitle() {
+			verifyTextContainsByXpath(EditAddressTitle, "Edit Address", "Edit Address title");
+		}
 	   public void deleteAccount() throws Exception {
 
 	
@@ -468,4 +478,66 @@ public class Register_page extends GenericWrappers{
 		enterOTP();
 		checknotificationbutton();
 	}
+	   public void Relogin_deletedAcnt() throws Exception {
+		    clickMoredetails();
+			
+			 checkAdddetailedAddress();
+			 saveHomeLocation();
+			 Flatfield();
+			 clickSaveBtn();
+			 verifyAddressline_Toast();
+			
+			 verifyServiceAreatitle();
+			 scrollSlider();
+			 clickSaveBtn();
+			 verifyRadiusToast();
+			
+			
+			 verifySelfietitle();
+			 clickTakePhotoBtn();
+			 verifyCameratitle();
+			 clickTakePhotoBtn();
+			 verifyCameratitle();
+			 clickSaveBtn();
+			 verifyFaceRecognized_Toast();
+			
+			 verifyJobCategoryTitle();
+			 clickACjob();
+			 verifySelectexperienceTitle();
+			 clickYearExperience();
+			 enterMinimumServiceCharge();
+			 clickSaveBtn();
+			 verifyYearsofExp();
+           
+			
+			 clickEditBtn();
+			 clickRemoveBtn();
+			 clickACjob();
+			 verifySelectexperienceTitle();
+			 clickYearExperience();
+			 enterMinimumServiceCharge();
+			 clickSaveBtn();
+			 verifyYearsofExp();
+			 clickSubmitBtn();
+			//check Address page functonality -already added address -Add new adress 
+			 checknotificationbutton();
+			 clickAddressarrow();
+			 verifyAddressTitle();
+			 verifyAlreadyEditedHomeaddress();
+			
+			//Adding new office address
+			 clickOffice_afterRegisterpage();
+			 clickAddAddress_Officepage();
+			 verifyConfirmLocation();
+			 clickMoredetails();
+			 saveOfficeLocation();
+			 Flatfield();
+			 clickSaveBtn();
+			 verifyAddressline_Toast();
+			
+				
+			
+			 checknotificationbutton();
+	}
+	  
 }

@@ -1,14 +1,18 @@
 package com.ProservPages;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.PointerInput;
+import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
 
 import java.time.Duration;
+import java.util.Collections;
 
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 
 import com.wrappers.GenericWrappers;
 
@@ -43,8 +47,8 @@ public class Serviceareazone_page  extends GenericWrappers{
 	private WebElement GooglemapSearch;
 	@FindBy(xpath = "//*[@resource-id='currentLocation_Text']")
 	private WebElement currentLocation_Text;
-//	@FindBy(xpath = "//*[@resource-id='Change_button_text']")
-//	private WebElement LocationchangeBtn;
+	@FindBy(xpath = "//android.widget.ImageView[@content-desc=\"Zoom out\"]")
+	private WebElement zoomOutBtn;
 //	@FindBy(xpath = "//*[@resource-id='Change_button_text']")
 //	private WebElement LocationchangeBtn;
 //	@FindBy(xpath = "//*[@resource-id='Change_button_text']")
@@ -60,8 +64,14 @@ public class Serviceareazone_page  extends GenericWrappers{
 		clickbyXpath(LocationchangeBtn, "Location change button");
 	}
 	public void enteranotherLocation() {
-		entervaluebyXpath(GooglemapSearchInput, "Google map search input", "Thindivanam, Tamil Nadu, India");
-		clickbyXpath(GooglemapSearch, "Google map search ");
+//		clickbyXpath(GooglemapSearchInput,"searchbox");
+//		entervaluebyXpath(GooglemapSearchInput, "Google map search input", "Thindivanam, Tamil Nadu");
+		clickbyXpath(zoomOutBtn, "Zoom out btn");
+		clickbyXpath(zoomOutBtn, "Zoom out btn");
+		clickbyXpath(zoomOutBtn, "Zoom out btn");
+		clickbyXpath(zoomOutBtn, "Zoom out btn");
+		clickbyXpath(zoomOutBtn, "Zoom out btn");
+		clickbyXpath(zoomOutBtn, "Zoom out btn");
 	}
 	public void useCurrentLocation() {
 		clickbyXpath(currentLocation_Text, "currentLocation_Text");
@@ -69,16 +79,68 @@ public class Serviceareazone_page  extends GenericWrappers{
 	
 	public void swipedown() {
 
-		   Dimension size = driver.manage().window().getSize();
-		    int startX = size.width / 2;
-		    int startY = (int) (size.height * 0.80);
-		    int endY   = (int) (size.height * 0.20);
+	    int width = driver.manage().window().getSize().getWidth();
+	    int height = driver.manage().window().getSize().getHeight();
 
-		    new TouchAction(driver)
-		        .press(PointOption.point(startX, startY))
-		        .waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000)))
-		        .moveTo(PointOption.point(startX, endY))
-		        .release()
-		        .perform();
+	    int startX = width / 2;
+	    int startY = (int) (height * 0.40); // Start from top 20%
+	    int endY = (int) (height * 0.80);   // Swipe down to 80%
+
+	    PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+	    Sequence swipe = new Sequence(finger, 0)
+	        .addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), startX, startY))
+	        .addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+	        .addAction(finger.createPointerMove(Duration.ofMillis(1000), PointerInput.Origin.viewport(), startX, endY))
+	        .addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+
+	    driver.perform(Collections.singletonList(swipe));
+	
+	}
+	public void tap() {
+		// 1. Get the screen dimensions (this part is the same)
+		int width = driver.manage().window().getSize().getWidth();
+		int height = driver.manage().window().getSize().getHeight();
+
+		// 2. Calculate the coordinates for the bottom-center tap
+		int tapX = width / 2;
+		// Use a value like 90% of the height to safely tap in the bottom region,
+		// avoiding the very edge of the screen or the system navigation bar.
+		int tapY = (int) (height * 0.90);
+
+		System.out.println("Tapping at bottom-center coordinates: x=" + tapX + ", y=" + tapY);
+
+		// 3. Define the tap action sequence
+		PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+		Sequence tap = new Sequence(finger, 1)
+		    // Move finger to the target coordinates
+		    .addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), tapX, tapY))
+		    // Finger presses down on the screen
+		    .addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+		    // Finger lifts up from the screen
+		    .addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+
+		// 4. Perform the tap action
+		driver.perform(Collections.singletonList(tap));
+	}
+	
+	public void swipeup() {
+
+		
+		    int width = driver.manage().window().getSize().getWidth();
+		    int height = driver.manage().window().getSize().getHeight();
+
+		    int centerX = width / 2;
+		    int startY = (int) (height * 0.5);  // Start from 80% (bottom)
+		    int endY = (int) (height * 0.2);    // Swipe up to 20% (top)
+
+		    PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+		    Sequence swipe = new Sequence(finger, 0)
+		        .addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), centerX, startY))
+		        .addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+		        .addAction(finger.createPointerMove(Duration.ofMillis(500), PointerInput.Origin.viewport(), centerX, endY))
+		        .addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+
+		    driver.perform(Collections.singletonList(swipe));
+		
 	}
 }

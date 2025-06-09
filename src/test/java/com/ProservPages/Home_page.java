@@ -37,6 +37,8 @@ public class Home_page extends GenericWrappers{
 	@FindBy(xpath = "//*[@resource-id='no_service_info_text']")
 	private WebElement NojobPlaceholder;
 	
+	
+	
 	@FindBy(xpath = "//*[@resource-id='available_jobs_title']")
 	private WebElement available_jobs_title;
 	
@@ -134,22 +136,12 @@ public class Home_page extends GenericWrappers{
 	public void checkOldLocationJob(String Productname,String Username) {
 		for (int i = 0; i < 20; i++) {
 			System.out.println("I value :"+i);
-			jobCard(i);
-			String productname = jobCardproductname(i).getText();
+//			jobCard(i);
 			
-			System.out.println("product name"+productname);
-			
-			if (productname.contains(Productname)) {
-				Reporter.reportStep( Productname+"field contains " + Productname+":: Service person desired jobs only displaying ", "PASS");
-				
-			}else{
-				System.out.println("Moving to next product");
-			}
-			String username = jobCardusername(i).getText();
-			
-			System.out.println("username :"+username);
-			
-			if (username.startsWith(Username)) {
+			if (isElementDisplayed(NojobPlaceholder, "No job placeholder")) {
+				Reporter.reportStep( Productname+" field not contains old location jobs" , "PASS");
+				break;
+			}else if ( jobCardproductname(i).getText().contains(Productname)&&jobCardusername(i).getText().startsWith(Username)) {
 				Reporter.reportStep("location changed still old location job displaying ", "FAIL");
 				break;
 			}else{
@@ -183,6 +175,8 @@ public class Home_page extends GenericWrappers{
 	public void clickHomeicon() {
 		clickbyXpath(HomeIcon, "Home Icon");
 	}
-	
+	public void alertokbtn() {
+		driver.switchTo().alert().accept();
+	}
 	
 }
