@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 import com.ProservPages.Login_Page;
 import com.ProservPages.Notification_page;
 import com.ProservPages.Register_page;
+import com.ProservPages.StoreLogPage;
 import com.wrappers.MobileAppWrappers;
 
 public class TC_01_Register extends MobileAppWrappers{
@@ -18,6 +19,8 @@ public class TC_01_Register extends MobileAppWrappers{
 	Login_Page loginpage;
 	Register_page registerpage;
 	Notification_page notificationPage;
+	StoreLogPage logpage;
+	
 	
 	@BeforeClass
 	public void startTestCase() {
@@ -37,6 +40,8 @@ public class TC_01_Register extends MobileAppWrappers{
 		loginpage= new Login_Page(driver);
 		registerpage = new Register_page(driver);
 		notificationPage= new Notification_page(driver);
+		logpage= new StoreLogPage(driver);
+		
 		try {
 			registerpage.WifiSwitch(loadProp("WIFINAME"), loadProp("WIFIPASSWORD"),loadProp("APP_PACKAGE"));
 			//check for error toast 
@@ -142,6 +147,7 @@ public class TC_01_Register extends MobileAppWrappers{
 			
 		} catch (Exception e) {
 			System.out.println(e);
+			logpage.CollectLogOnFailure(testCaseName,testDescription);
 		}
 	
 	}

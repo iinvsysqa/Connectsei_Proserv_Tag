@@ -10,6 +10,7 @@ import com.ProservPages.Notification_page;
 import com.ProservPages.Profile_page;
 import com.ProservPages.Register_page;
 import com.ProservPages.Serviceareazone_page;
+import com.ProservPages.StoreLogPage;
 import com.wrappers.MobileAppWrappers;
 
 public class TC_06_BookingFlow extends MobileAppWrappers{
@@ -21,6 +22,7 @@ public class TC_06_BookingFlow extends MobileAppWrappers{
 	ConnectSei_Home_page connectseiHomepage;
 	Home_page homepage;
 	Serviceareazone_page serviceareazone;
+	StoreLogPage logpage;
 	
 	@BeforeClass
 	public void startTestCase() {
@@ -37,7 +39,7 @@ public class TC_06_BookingFlow extends MobileAppWrappers{
 	
 	
 	
-	@Test(priority = 4)
+	@Test(priority = 5)
 	public void removerepair() throws Exception {
 		initAndriodDriver();
 		loginpage= new Login_Page(driver);
@@ -47,6 +49,7 @@ public class TC_06_BookingFlow extends MobileAppWrappers{
 		connectseiHomepage=new ConnectSei_Home_page(driver);
 		homepage = new Home_page(driver);
 		serviceareazone = new Serviceareazone_page(driver);
+		logpage= new StoreLogPage(driver);
 		try {
 			//installing connectsei to raising product issue  
 			Connectsei_uninstall_reinstall();
@@ -138,6 +141,7 @@ public class TC_06_BookingFlow extends MobileAppWrappers{
 			
 		}catch (Exception e) {
 			System.out.println(e);
+			logpage.CollectLogOnFailure(testCaseName,testDescription);
 		}
 	}
 			

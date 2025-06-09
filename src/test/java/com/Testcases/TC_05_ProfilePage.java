@@ -7,6 +7,7 @@ import com.ProservPages.Login_Page;
 import com.ProservPages.Notification_page;
 import com.ProservPages.Profile_page;
 import com.ProservPages.Register_page;
+import com.ProservPages.StoreLogPage;
 import com.wrappers.MobileAppWrappers;
 
 public class TC_05_ProfilePage extends MobileAppWrappers{
@@ -15,6 +16,7 @@ public class TC_05_ProfilePage extends MobileAppWrappers{
 	Register_page registerpage;
 	Notification_page notificationPage;
 	Profile_page profilepage;
+	StoreLogPage logpage;
 	@BeforeClass
 	public void startTestCase() {
 		testCaseName = "TC_05_ProfilePage";
@@ -36,6 +38,7 @@ public class TC_05_ProfilePage extends MobileAppWrappers{
 		registerpage = new Register_page(driver);
 		notificationPage= new Notification_page(driver);
 		profilepage=new Profile_page(driver);
+		logpage= new StoreLogPage(driver);
 		
 		try {
 			
@@ -133,6 +136,8 @@ public class TC_05_ProfilePage extends MobileAppWrappers{
 			
 		}catch (Exception e) {
 			System.out.println(e);
+			logpage.CollectLogOnFailure(testCaseName,testDescription);
+
 		}
 	}
 }

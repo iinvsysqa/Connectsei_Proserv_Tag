@@ -181,8 +181,8 @@ public class Login_Page extends GenericWrappers{
 		  verifyTextContainsByXpath(HomepageStatustext, "Status:", "Home page Status text") ;
 	}
 	public void login() {
-		enterMobileno(Mobilenumber);
-		enterPassword(Password);
+		enterMobileno(loadProp("MOBILENUMBER"));
+		enterPassword(loadProp("PASSWORD"));
 		clickLogin();
 		checkOKbtuton();
 		checknotificationbutton();

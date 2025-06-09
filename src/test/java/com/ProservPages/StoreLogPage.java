@@ -47,6 +47,8 @@ public class StoreLogPage extends GenericWrappers{
 			private WebElement signInButton;
 		 @FindBy(xpath = "//*[@resource-id='SignIn_Email_or_UserName']")
 			private WebElement userNameField;
+		 @FindBy(xpath = "//android.widget.TextView[@text=\"Support\"]")
+		 private WebElement supporticon;
 		 
 		 @FindBy(xpath = "(//android.widget.EditText[@resource-id='textInput'])[1]")
 			private WebElement otpField1;
@@ -62,6 +64,10 @@ public class StoreLogPage extends GenericWrappers{
 
 			@FindBy(xpath = "//*[@resource-id='OTP_ButtonText']")
 			private WebElement submitBtn;
+			@FindBy(xpath = "//*[@resource-id='ShareIcon']")
+			private WebElement shareIcon;
+			@FindBy(xpath = "//*[@resource-id='ShareLogButton']")
+			private WebElement sharelogBtn_inside;
 			
 			@FindBy(xpath = "//*[@resource-id='com.android.permissioncontroller:id/permission_allow_foreground_only_button']")
 			private WebElement locationPopUp;
@@ -70,41 +76,18 @@ public class StoreLogPage extends GenericWrappers{
 			private WebElement nearByPermisson;
 		
 		public void storeLogToDownloads() {
-			turnOnBT();
+			
 			killAndReopenApp();
-			if (isElementDisplayedCheck(menuBarButton)) {
+			if (isElementDisplayedCheck(shareIcon)) {
 				
-				clickbyXpath(menuBarButton, " Menu Bar ");
-				clickbyXpath(shareLogbtn, "ShareLog Button");
+				clickbyXpath(shareIcon, "share icon");
 				clickbyXpath(FTPicon, "Filemanager Button");
 				clickbyXpath(FTPDownloads, "Filemanager downloads Button");
 				clickbyXpath(FTPsaveBtn, "Filemanager save Button");
-			}else {
-				clickbyXpath(launchSignInButton, " Launch Sign In Button " );
-				entervaluebyXpath(userNameField, " User Name " , userName);
-				clickbyXpath(signInButton, " Sign In ");
-				entervaluebyXpath(otpField1, " OTP Box 1 " , "1");
-				entervaluebyXpath(otpField2, " OTP Box 2 " , "2");
-				entervaluebyXpath(otpField3, " OTP Box 3 " , "3");
-				entervaluebyXpath(otpField4, " OTP Box 4 " , "4");
-				clickbyXpath(submitBtn," Submit Button ");
+			}else if(isElementDisplayedCheck(supporticon)){
+				clickbyXpath(supporticon, "supporticon" );
+				clickbyXpath(sharelogBtn_inside, "sharelog btn");
 				
-				driver.executeScript("mobile: shell", ImmutableMap.of("command", "pm grant com.iinvsys.szephyr android.permission.ACCESS_FINE_LOCATION"));
-				driver.executeScript("mobile: shell", ImmutableMap.of("command", "pm grant com.iinvsys.szephyr android.permission.BLUETOOTH_SCAN"));
-				driver.executeScript("mobile: shell", ImmutableMap.of("command", "pm grant com.iinvsys.szephyr android.permission.BLUETOOTH_CONNECT"));
-//				if (isElementDisplayedCheck(locationPopUp)) {
-//					clickbyXpath(locationPopUp, "Location pop-up");
-//				} else {
-//					System.out.println("not asked for precise or approx location");
-//
-//				}
-//				if (isElementDisplayedCheck(nearByPermisson)) {
-//
-//					clickbyXpathwithoutReport(nearByPermisson, " Near by devices Permission  ");
-//				}
-				
-				clickbyXpath(menuBarButton, " Menu Bar ");
-				clickbyXpath(shareLogbtn, "ShareLog Button");
 				clickbyXpath(FTPicon, "Filemanager Button");
 				clickbyXpath(FTPDownloads, "Filemanager downloads Button");
 				clickbyXpath(FTPsaveBtn, "Filemanager save Button");
@@ -114,7 +97,7 @@ public class StoreLogPage extends GenericWrappers{
 			
 		}
 		public void takeAppLog() throws FileNotFoundException, IOException, Exception {
-			File f= new File(".//sZephyrLOG.txt");
+			File f= new File(".//service_person.txt");
 			if (f.exists()) {
 				f.delete();
 				}
@@ -123,7 +106,7 @@ public class StoreLogPage extends GenericWrappers{
 		    
 			String projectRoot = System.getProperty("user.dir");
 			Thread.sleep(5000);
-			String pullCommand = "adb pull /storage/emulated/0/Download/sZephyrLOG.txt \"" + projectRoot + "\\sZephyrLOG.txt\"";
+			String pullCommand = "adb pull /storage/emulated/0/Download/service_person.txt \"" + projectRoot + "\\service_person.txt\"";
 			Runtime.getRuntime().exec(pullCommand);
 
 //		    Runtime.getRuntime().exec("adb pull /storage/emulated/0/Download/sZephyrLOG.txt "+projectRoot+"/sZephyrLOG.txt");
@@ -167,8 +150,8 @@ public class StoreLogPage extends GenericWrappers{
 			// FTP server credentials
 
 			// Local log files
-			String appLogPath = "./sZephyrLOG.txt";
-			String deviceLogPath = "./device.log";
+			String appLogPath = "./service_person.txt";
+//			String deviceLogPath = "./device.log";
 
 			// FTP paths
 			String existingDirectory = "/Internal_Project/FULL_VALIDATION_PACKAGES_LOGS/LOGS/2024/Automation_Logs/";
@@ -181,11 +164,11 @@ public class StoreLogPage extends GenericWrappers{
 
 			// Upload files to the new subdirectory
 			uploadFile(appLogPath, testCaseName + "  AppLog.txt");
-			uploadFile(deviceLogPath, testCaseName + "  DeviceLog.log");
+//			uploadFile(deviceLogPath, testCaseName + "  DeviceLog.log");
 
 			String remotefilepath = existingDirectory + newSubDir;
 			String Filename = "/" + testCaseName + ".txt";
-			Reporter.reportStep(" FTP Path : " + remotefilepath + "<br>" + "Device Log File name:" + Filename, "INFO");
+//			Reporter.reportStep(" FTP Path : " + remotefilepath + "<br>" + "Device Log File name:" + Filename, "INFO");
 
 			// Disconnect from FTP server
 			disconnect();
