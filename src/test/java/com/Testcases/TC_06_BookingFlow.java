@@ -64,7 +64,7 @@ public class TC_06_BookingFlow extends MobileAppWrappers{
 			connectseiHomepage.clickBooknow();
 //			notificationPage.verifyNointernetMsg();
 			
-			enableWiFi();
+//			enableWiFi();
 //			registerpage.WifiSwitch(loadProp("WIFINAME"), loadProp("WIFIPASSWORD"),loadProp("CONNECTSEI_APP_PACKAGE"));
 //			notificationPage.clickReloadicon();
 //			connectseiHomepage.clickBooknow();

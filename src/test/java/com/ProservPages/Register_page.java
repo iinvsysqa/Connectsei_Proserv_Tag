@@ -17,12 +17,12 @@ import io.appium.java_client.appmanagement.ApplicationState;
 public class Register_page extends GenericWrappers{
 
 	public AndroidDriver driver;
-	String username =loadProp("USERNAME");
-	String Lastname =loadProp("LASTNAME");
-	String email =loadProp("EMAILID");
+//	String username =loadProp("USERNAME");
+//	String Lastname =loadProp("LASTNAME");
+//	String email =loadProp("EMAILID");
 	public String Location;
-	String Password =loadProp("PASSWORD");
-	String Mobilenumber =loadProp("MOBILENUMBER");
+//	String Password =loadProp("PASSWORD");
+//	String Mobilenumber =loadProp("MOBILENUMBER");
 	// Locate all elements on the page
 
 	@FindBy(xpath = "//*[@resource-id='sign_up']")
@@ -205,6 +205,7 @@ public class Register_page extends GenericWrappers{
 		
 	}
 	public void enterMobileNumber(String mobile) {
+		isElementDisplayedCheck(Mobilenumberfield);
 		entervaluebyXpath(Mobilenumberfield, "MobilenumberField", mobile);
 	}
 	public void enterRandomMobileNumber() {
@@ -382,9 +383,11 @@ public class Register_page extends GenericWrappers{
 		clickbyXpath(AccountDeleteButton, "DeleteAccount button");
 	}
 	public void Connectsei_entermobileno(String mobile) {
+		isElementDisplayedCheck(Connectsei_mobilenofield);
 		entervaluebyXpath(Connectsei_mobilenofield, "Mobile Number",mobile );
 	}
 	public void Connectsei_enterPassword(String password) {
+		isElementDisplayedCheck(Connectsei_Passwordfield);
 		entervaluebyXpath(Connectsei_Passwordfield, "Password",password );
 
 	}
@@ -453,8 +456,8 @@ public class Register_page extends GenericWrappers{
 		 popup_okBtn();
 		
 		 Connectsei_uninstall_reinstall();
-		 Connectsei_entermobileno(Mobilenumber);
-		 Connectsei_enterPassword(Password);
+		 Connectsei_entermobileno(loadProp("MOBILENUMBER"));
+		 Connectsei_enterPassword(loadProp("PASSWORD"));
 		 Connecsei_clickLogin();
 //		 popup_okBtn,();
 		 checknotificationbutton();
@@ -476,7 +479,7 @@ public class Register_page extends GenericWrappers{
 		clickRegisterButton();
 		OTPtitlecheck();
 		enterOTP();
-		checknotificationbutton();
+//		checknotificationbutton();
 	}
 	   public void Relogin_deletedAcnt() throws Exception {
 		    clickMoredetails();

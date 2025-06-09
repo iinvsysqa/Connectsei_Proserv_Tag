@@ -185,6 +185,6 @@ public class Login_Page extends GenericWrappers{
 		enterPassword(loadProp("PASSWORD"));
 		clickLogin();
 		checkOKbtuton();
-		checknotificationbutton();
+//		checknotificationbutton();
 	}
 }

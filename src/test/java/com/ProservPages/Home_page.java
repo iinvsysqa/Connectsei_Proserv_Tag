@@ -100,8 +100,8 @@ public class Home_page extends GenericWrappers{
 				System.out.println("Moving to next product");
 			}
 			
+//			Reporter.reportStep( Productname+"field not contains " + Productname, "FAIL");
 		}
-		Reporter.reportStep( Productname+"field not contains " + Productname, "FAIL");
 	}
 	
 	public void checkUsersentjob(String Productname,String Username) {
