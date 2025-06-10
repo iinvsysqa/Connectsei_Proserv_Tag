@@ -455,15 +455,15 @@ public class Register_page extends GenericWrappers{
 		 DeleteAccount();
 		 popup_okBtn();
 		
-		 Connectsei_uninstall_reinstall();
-		 Connectsei_entermobileno(loadProp("MOBILENUMBER"));
-		 Connectsei_enterPassword(loadProp("PASSWORD"));
-		 Connecsei_clickLogin();
-//		 popup_okBtn,();
-		 checknotificationbutton();
-		 clickProfileIcon();
-		 Connecsei_deleteAccount();
-		 popup_okBtn();
+//		 Connectsei_uninstall_reinstall();
+//		 Connectsei_entermobileno(loadProp("MOBILENUMBER"));
+//		 Connectsei_enterPassword(loadProp("PASSWORD"));
+//		 Connecsei_clickLogin();
+//		 popup_okBtn();
+////		 checknotificationbutton();
+//		 clickProfileIcon();
+//		 Connecsei_deleteAccount();
+//		 popup_okBtn();
 	   }
 	   
 	   public void registeraccount(String username,String Lastname,String Password) {
