@@ -112,6 +112,7 @@ public class Login_Page extends GenericWrappers{
 	}
 	
 	public void enterMobileno(String mobilenumber) {
+		isElementDisplayedCheck(Mobilenumberfield);
 		entervaluebyXpath(Mobilenumberfield, "Mobilenumber field", mobilenumber);
 	}
 	public void enterPassword(String password) {

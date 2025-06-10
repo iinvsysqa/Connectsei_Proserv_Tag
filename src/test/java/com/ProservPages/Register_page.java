@@ -279,6 +279,7 @@ public class Register_page extends GenericWrappers{
 		verifyTextContainsByXpath(ConfirmLocationtitle, "Confirm  Location", "Confirm Location Title");
 	}
 	public void clickMoredetails() {
+		isElementDisplayedCheck(more_details_btn);
 		clickbyXpath(more_details_btn, "More Details button");
 	}
 	public void checkAdddetailedAddress() {

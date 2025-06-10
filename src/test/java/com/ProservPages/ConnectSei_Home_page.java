@@ -77,6 +77,7 @@ public class ConnectSei_Home_page extends GenericWrappers{
 		clickbyXpath(Nextbutton, "Next button");
 	}
 	public void clickACproduct() {
+		isElementDisplayedCheck(AC_Product);
 		clickbyXpath(AC_Product, "AC product");
 	}
 	public void addDescription() {
