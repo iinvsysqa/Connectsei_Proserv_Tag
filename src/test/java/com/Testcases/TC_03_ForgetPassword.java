@@ -23,7 +23,6 @@ public class TC_03_ForgetPassword extends MobileAppWrappers{
 	String username =loadProp("USERNAME");
 	String Lastname =loadProp("LASTNAME");
 	String Password =loadProp("PASSWORD");
-	String Mobilenumber =loadProp("MOBILENUMBER");
 	
 	
 	@Test(priority = 2)
@@ -36,7 +35,7 @@ public class TC_03_ForgetPassword extends MobileAppWrappers{
 		try {
 			uninstall_reinstall();
 			loginpage.Clickforgetpasswordlink();
-			registerpage.enterMobileNumber(Mobilenumber);
+			registerpage.enterMobileNumber(loadProp("MOBILENUMBER"));
 			loginpage.clickGetOTPbtn();
 			registerpage.OTPtitlecheck();
 			registerpage.enterIncorrectOTP();
@@ -49,7 +48,7 @@ public class TC_03_ForgetPassword extends MobileAppWrappers{
 			registerpage.clickSubmitBtn();
 			
 			//logout
-			loginpage.enterMobileno(Mobilenumber);
+			loginpage.enterMobileno(loadProp("MOBILENUMBER"));
 			loginpage.enterPassword(Password);
 			loginpage.clickLogin();
 			loginpage.checkOKbtuton();

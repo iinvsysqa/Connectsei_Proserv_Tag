@@ -23,7 +23,6 @@ public class TC_02_Login extends MobileAppWrappers{
 	String username =loadProp("USERNAME");
 	String Lastname =loadProp("LASTNAME");
 	String Password =loadProp("PASSWORD");
-	String Mobilenumber =loadProp("MOBILENUMBER");
 	
 	
 	@Test(priority = 1)
@@ -41,7 +40,7 @@ public class TC_02_Login extends MobileAppWrappers{
 			loginpage.clickLogin();
 			loginpage.checkMobilenoToast();
 			
-			loginpage.enterMobileno(Mobilenumber);
+			loginpage.enterMobileno(loadProp("MOBILENUMBER"));
 			loginpage.enterPassword(Password);
 			loginpage.clickLogin();
 			loginpage.checkOKbtuton();
