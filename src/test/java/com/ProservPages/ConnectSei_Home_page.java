@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import com.utils.Reporter;
 import com.wrappers.GenericWrappers;
 
 import io.appium.java_client.android.AndroidDriver;
@@ -41,12 +42,38 @@ public class ConnectSei_Home_page extends GenericWrappers{
 	private WebElement Book_NowText;
 	@FindBy(xpath = "//*[@resource-id='SearchServiceText']") 
 	private WebElement Connectsei_SearchInput;
+	@FindBy(xpath = "//*[@resource-id='PendingButton']") 
+	private WebElement PendingButton;
+	@FindBy(xpath = "//*[@resource-id='AcceptButton']") 
+	private WebElement AcceptButton;
+	@FindBy(xpath = "//*[@resource-id='CheckBoxfalse']") 
+	private WebElement CheckBoxfalse;
+	@FindBy(xpath = "//*[@resource-id='AvailableTechnicianButton']") 
+	private WebElement AvailableTechnicianButton;
 	@FindBy(xpath = "//android.widget.TextView[@text=\"OK\"]")
 	private WebElement OkButton;
+	@FindBy(xpath = "(//android.widget.TextView[@text=\"My Order\"])[2]")
+	private WebElement Myorderbtn_homepage;
 //	@FindBy(xpath = "//*[@resource-id='SlotButton0']") 
 //	private WebElement SlotButton0;
+	private WebElement jobCard(int no) {
+		return driver.findElement(By.xpath("//*[@resource-id='JobCard"+no+"']"));
+		
+	}
+	private WebElement jobCardproductname(int no) {
+		return driver.findElement(By.xpath("//*[@resource-id='JobCardProductName"+no+"']"));
+		
+	}
 	private WebElement SlotButton(int no) {
 		return driver.findElement(By.xpath("//*[@resource-id='SlotButton"+no+"']"));
+		
+	}
+	private WebElement ProductText(int no) {
+		return driver.findElement(By.xpath("//*[@resource-id='ProductText"+no+"']"));
+		
+	}
+	private WebElement ServicePersonName(int no) {
+		return driver.findElement(By.xpath("//*[@resource-id='ServivePersonName"+no+"']"));
 		
 	}
 	
@@ -92,4 +119,62 @@ public class ConnectSei_Home_page extends GenericWrappers{
 	public void Connectsei_SearchInput() {
 		verifyTextContainsByXpath(Connectsei_SearchInput, "Search service here...", "Connectsei search box");
 	}
+	public void clickonProducttext(int num,String Productname) {
+		isElementDisplayedCheck(ProductText(num));
+		clickbyXpath(ProductText(num), Productname);
+	}
+	public void clickMyOrderbutton() {
+		clickbyXpath(Myorderbtn_homepage, "My order button");
+	}
+	public void navigatePendingpage() {
+		clickbyXpath(PendingButton, "Pending Button");
+	}
+	public void checkforPendingOrderstatus(String Productname) {
+		try {
+			
+		
+		for (int i = 0; i < 20; i++) {
+				jobCard(i);
+				String productname = jobCardproductname(i).getText();
+				
+				System.out.println("product name"+productname);
+				
+				
+				if (productname.contains(Productname)) {
+					clickbyXpath(jobCardproductname(i), Productname);
+					Reporter.reportStep( Productname+"field contains Service person accepted Product name: " + Productname, "PASS");
+					
+					break;
+				}else{
+					System.out.println("Moving to next product");
+				}
+				
+				
+				
+				
+				}
+			}catch (Exception e) {
+				Reporter.reportStep("Page not displayed any products", "FAIL");
+				
+		}
+	}
+	public void clickAvailableTechnicianButton() {
+		clickbyXpath(AvailableTechnicianButton, "AvailableTechnicianButton");
+	}
+	
+	public void checkservicepersonname_and_accept(String name) {
+		for (int i = 0; i < 20; i++) {
+			if(ServicePersonName(i).getText().startsWith(name)) {
+				Reporter.reportStep( "field contains Service person name: " + name, "PASS");
+				clickbyXpath(ServicePersonName(i), "navigating to Service person page");
+				scrollToText("I agree with the T&C and privacy policy");
+				clickbyXpath(CheckBoxfalse, "CheckBoxfalse");
+				clickbyXpath(AcceptButton, "Accept button");
+				
+				break;
+			}
+		}
+	}
+	
+	
 }

@@ -38,7 +38,7 @@ public class TC_04_HOMEPAGE extends MobileAppWrappers{
 		
 		try {
 			uninstall_reinstall();
-			loginpage.login();
+			loginpage.login(loadProp("MOBILENUMBER"),loadProp("PASSWORD"));
 			notificationPage.clickNotificationIcon();
 			notificationPage.verifyNotificationtitle();
 			notificationPage.verifyNotificationPlaceholder();

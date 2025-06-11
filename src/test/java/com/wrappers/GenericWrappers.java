@@ -628,7 +628,7 @@ public class GenericWrappers {
 
 
 
-	public void closeApp() {
+	public void closeApp(String packages) {
 
 		try {
 			if (driver != null) {
@@ -641,7 +641,7 @@ public class GenericWrappers {
 		}
 	}
 	
-	public void openapp() {
+	public void openapp(String packages) {
 		try {
 			
 				// Kill the app (terminate it)
@@ -1221,5 +1221,5 @@ public class GenericWrappers {
 		return bReturn;
 	}
  
- 
+
 }

@@ -37,6 +37,21 @@ public class Home_page extends GenericWrappers{
 	@FindBy(xpath = "//*[@resource-id='no_service_info_text']")
 	private WebElement NojobPlaceholder;
 	
+	@FindBy(xpath = "//*[@resource-id='Interested_text']")
+	private WebElement Interested_text;
+	
+	@FindBy(xpath = "//*[@resource-id='Journey StartedButton']")
+	private WebElement JourneyStartedButton;
+	
+	@FindBy(xpath = "//*[@resource-id='RibbonSmallTagSVGExpired']")
+	private WebElement RibbonTag;
+	
+	@FindBy(xpath = "//*[@resource-id='ContactNumberValue']")
+	private WebElement ContactNumberValue;
+	
+	@FindBy(xpath = "//*[@resource-id='QRCode']")
+	private WebElement QRCode;
+	
 	
 	
 	@FindBy(xpath = "//*[@resource-id='available_jobs_title']")
@@ -50,6 +65,9 @@ public class Home_page extends GenericWrappers{
 	
 	@FindBy(xpath = "//android.widget.TextView[@text=\"Home\"]")
 	private WebElement HomeIcon;
+	
+	@FindBy(xpath = "//android.widget.TextView[@text=\"My Order\"]")
+	private WebElement MyorderIcon;
 	
 	private WebElement jobCard(int no) {
 		return driver.findElement(By.xpath("//*[@resource-id='JobCard"+no+"']"));
@@ -178,5 +196,67 @@ public class Home_page extends GenericWrappers{
 	public void alertokbtn() {
 		driver.switchTo().alert().accept();
 	}
+	public void clickMyordericon() {
+		clickbyXpath(MyorderIcon, "My order icon");
+	}
+	public void clickInterestedText() {
+		clickbyXpath(Interested_text, "Interested Text");
+	}
 	
+	public void checkforInterestedOrder(String Productname,String Username) {
+		for (int i = 0; i < 20; i++) {
+			jobCard(i);
+			String productname = jobCardproductname(i).getText();
+			
+			System.out.println("product name"+productname);
+			String username = jobCardusername(i).getText();
+			
+			System.out.println("username :"+username);
+			
+			if (productname.contains(Productname)&&username.startsWith(Username)) {
+				Reporter.reportStep( Productname+"field contains " + Productname+":: Service person - ("+username+") related jobs only displaying ", "PASS");
+				
+				break;
+			}else{
+				System.out.println("Moving to next product");
+			}
+			
+			
+			
+			
+		}
+	}
+	
+	public void clickonJourneyStarted_Acceptedorder(String Productname,String Username) {
+
+		try {
+			
+		
+			for (int i = 0; i < 20; i++) {
+				System.out.println("I value :"+i);
+	//			jobCard(i);
+				
+				if (isElementDisplayed(NojobPlaceholder, "No job placeholder")) {
+					Reporter.reportStep( Productname+" field not contains old location jobs" , "FAIL");
+					break;
+				}else if ( jobCardproductname(i).getText().contains(Productname)&&jobCardusername(i).getText().startsWith(Username)) {
+					Reporter.reportStep("User Accepted job displayed in Accepted order page ", "PASS");
+					clickbyXpath(jobCardproductname(i), "Product-"+Productname);
+					scrollToText("Journey Started");
+					verifyTextContainsByXpath(ContactNumberValue, loadProp("MOBILENUMBER_CONNECTSEI_2"), "Check user Mobile number");
+					clickbyXpath(JourneyStartedButton, "Journey Started button");
+//					clickbyXpath(, );
+					isElementDisplayedCheck(QRCode);
+					break;
+				}else{
+					System.out.println("Moving to next product");
+				}
+				
+			}
+		
+		}catch (Exception e) {
+			Reporter.reportStep("Something went wrong"+e, "FAIL");
+			
+		}
+	}
 }

@@ -72,11 +72,12 @@ public class TC_06_BookingFlow extends MobileAppWrappers{
 			Thread.sleep(3000);
 			serviceareazone.tap();//not working 
 			connectseiHomepage.Connectsei_SearchInput();
+			closeApp(loadProp("CONNECTSEI_APP_PACKAGE"));
 			
 			//check proserv for recieved job for push notification 
 			//check proserv hompage and for recieved job user name and product is same as customer sent or not
 			uninstall_reinstall();
-			loginpage.login();
+			loginpage.login(loadProp("MOBILENUMBER"),loadProp("PASSWORD"));
 			registerpage.Relogin_deletedAcnt();
 			//verifying KYC
 			
@@ -129,8 +130,32 @@ public class TC_06_BookingFlow extends MobileAppWrappers{
 			homepage.changeOnline();
 			homepage.confirmAvailablejob("Ac",connectsei_username);
 			
+			//check interested job details
+			homepage.clickMyordericon();
+			homepage.clickInterestedText();
+			homepage.checkforInterestedOrder("Ac",connectsei_username);
+			closeApp(loadProp("APP_PACKAGE"));
 			
-			
+			/*
+			 * //navigate to connectsei and approve the service person
+			 * openapp(loadProp("CONNECTSEI_APP_PACKAGE"));
+			 * connectseiHomepage.clickMyOrderbutton();
+			 * connectseiHomepage.navigatePendingpage();
+			 * connectseiHomepage.checkforPendingOrderstatus("AC");
+			 * connectseiHomepage.clickAvailableTechnicianButton();
+			 * connectseiHomepage.checkservicepersonname_and_accept(loadProp("USERNAMEINAPP"
+			 * )); connectseiHomepage.Connectsei_SearchInput();
+			 * 
+			 * //check for Accepted order in connectseiapp homepage.clickMyordericon();
+			 * serviceareazone.swipedown();
+			 * connectseiHomepage.checkforPendingOrderstatus("AC");
+			 * closeApp(loadProp("CONNECTSEI_APP_PACKAGE"));
+			 * 
+			 * //check for proserv My order page Accepted order
+			 * openapp(loadProp("APP_PACKAGE")); homepage.clickMyordericon();
+			 * serviceareazone.swipedown();
+			 * homepage.clickonJourneyStarted_Acceptedorder("Ac",connectsei_username );
+			 */
 			
 			
 			

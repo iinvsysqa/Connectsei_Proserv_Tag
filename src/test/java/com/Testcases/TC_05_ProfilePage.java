@@ -43,7 +43,7 @@ public class TC_05_ProfilePage extends MobileAppWrappers{
 		try {
 			
 			uninstall_reinstall();
-			loginpage.login();//comment this
+			loginpage.login(loadProp("MOBILENUMBER"),loadProp("PASSWORD"));//comment this
 			registerpage.clickProfileIcon();
 			profilepage.verifyProfilepageName();
 			profilepage.verifyProfilepageMobileNo();
@@ -131,7 +131,7 @@ public class TC_05_ProfilePage extends MobileAppWrappers{
 			registerpage.LogoutProserv();
 			registerpage.popup_okBtn();
 			
-			loginpage.login();
+			loginpage.login(loadProp("MOBILENUMBER"),loadProp("PASSWORD"));
 			registerpage.deleteAccount();
 			
 		}catch (Exception e) {

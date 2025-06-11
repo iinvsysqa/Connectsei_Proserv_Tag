@@ -172,6 +172,12 @@ public class Register_page extends GenericWrappers{
 	@FindBy(xpath = "//*[@resource-id='Edit AddressTitle']")
 	private WebElement EditAddressTitle;
 	
+	private WebElement Productname(int no) {
+		return driver.findElement(By.xpath("//*[@resource-id='product_name_"+no+"']"));
+		
+	}
+	
+	
 //	@FindBy(xpath = "//*[@resource-id='Confirm OTPText']")
 //	private WebElement Confirm_OTPText;
 	
@@ -378,7 +384,10 @@ public class Register_page extends GenericWrappers{
 		clickbyXpath(LogoutBtn, "Logout Button");
 	}
 	public void popup_okBtn() {
-		clickbyXpath(PopupOkbtn, "Ok Pop-UP");
+		if(isElementDisplayedCheck(PopupOkbtn)) {
+			
+			clickbyXpath(PopupOkbtn, "Ok Pop-UP");
+		}
 	}
 	public void DeleteAccount() {
 		clickbyXpath(AccountDeleteButton, "DeleteAccount button");
@@ -543,5 +552,9 @@ public class Register_page extends GenericWrappers{
 			
 			 checknotificationbutton();
 	}
+		
+		public void clickonProductName(int num,String Productname) {
+			clickbyXpath(Productname(num), Productname);
+		}
 	  
 }
