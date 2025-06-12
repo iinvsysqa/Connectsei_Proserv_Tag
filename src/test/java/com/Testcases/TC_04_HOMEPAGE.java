@@ -29,7 +29,7 @@ public class TC_04_HOMEPAGE extends MobileAppWrappers{
 	
 	
 	@Test(priority = 3)
-	public void removerepair() throws Exception {
+	public void TC_04_Check_Homepage_Notification_and_Myorderpage () throws Exception {
 		initAndriodDriver();
 		loginpage= new Login_Page(driver);
 		registerpage = new Register_page(driver);

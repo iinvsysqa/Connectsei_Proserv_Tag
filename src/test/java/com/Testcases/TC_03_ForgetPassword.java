@@ -26,7 +26,7 @@ public class TC_03_ForgetPassword extends MobileAppWrappers{
 	
 	
 	@Test(priority = 2)
-	public void removerepair() throws Exception {
+	public void TC_03_ForgetPassword() throws Exception {
 		initAndriodDriver();
 		loginpage= new Login_Page(driver);
 		registerpage = new Register_page(driver);

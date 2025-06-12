@@ -26,7 +26,7 @@ public class TC_02_Login extends MobileAppWrappers{
 	
 	
 	@Test(priority = 1)
-	public void removerepair() throws Exception {
+	public void TC02_Login() throws Exception {
 		initAndriodDriver();
 		loginpage= new Login_Page(driver);
 		registerpage = new Register_page(driver);

@@ -36,7 +36,7 @@ public class TC_01_Register extends MobileAppWrappers{
 	
 	
 	@Test(priority = 0)
-	public void removerepair() throws Exception {
+	public void TC01_Registeration() throws Exception {
 		initAndriodDriver();
 		loginpage= new Login_Page(driver);
 		registerpage = new Register_page(driver);
