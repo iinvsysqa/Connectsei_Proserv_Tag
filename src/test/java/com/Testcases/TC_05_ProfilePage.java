@@ -32,7 +32,7 @@ public class TC_05_ProfilePage extends MobileAppWrappers{
 	String address =loadProp("HOMEADDRESS");
 	
 	@Test(priority = 4)
-	public void TC_05_ProfilePage() throws Exception {
+	public void TC_05_ProfilePage_Functionality() throws Exception {
 		initAndriodDriver();
 		loginpage= new Login_Page(driver);
 		registerpage = new Register_page(driver);

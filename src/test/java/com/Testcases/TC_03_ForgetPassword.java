@@ -1,6 +1,5 @@
 package com.Testcases;
 
-import org.apache.tools.ant.types.resources.FileResourceIterator;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -26,7 +25,7 @@ public class TC_03_ForgetPassword extends MobileAppWrappers{
 	
 	
 	@Test(priority = 2)
-	public void TC_03_ForgetPassword() throws Exception {
+	public void TC_03_ForgetPassword_functionality() throws Exception {
 		initAndriodDriver();
 		loginpage= new Login_Page(driver);
 		registerpage = new Register_page(driver);

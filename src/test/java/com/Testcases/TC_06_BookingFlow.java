@@ -40,7 +40,7 @@ public class TC_06_BookingFlow extends MobileAppWrappers{
 	
 	
 	@Test(priority = 5)
-	public void TC_06_BookingFlow() throws Exception {
+	public void TC_06_BookingFlow_Functionality() throws Exception {
 		initAndriodDriver();
 		loginpage= new Login_Page(driver);
 		registerpage = new Register_page(driver);

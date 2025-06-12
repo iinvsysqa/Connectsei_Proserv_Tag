@@ -12,7 +12,6 @@
       <class name="com.Testcases.TC_04_HOMEPAGE"/>
       <class name="com.Testcases.TC_05_ProfilePage"/>
       <class name="com.Testcases.TC_06_BookingFlow"/>
-      
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

@@ -40,7 +40,7 @@ public class TC_07_AC_Fan_Booking extends MobileAppWrappers{
 	
 	
 	@Test(priority = 6)
-	public void TC_07_AC_Fan_Booking() throws Exception {
+	public void TC_07_AC_Fan_Booking_Functionality() throws Exception {
 		initAndriodDriver();
 		loginpage= new Login_Page(driver);
 		registerpage = new Register_page(driver);

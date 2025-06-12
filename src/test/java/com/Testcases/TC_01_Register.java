@@ -1,10 +1,5 @@
 package com.Testcases;
 
-import org.opencv.core.Core;
-import org.opencv.core.Mat;
-import org.opencv.core.MatOfRect;
-import org.opencv.imgcodecs.Imgcodecs;
-import org.opencv.objdetect.CascadeClassifier;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
