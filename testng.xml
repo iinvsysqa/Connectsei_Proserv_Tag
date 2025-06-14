@@ -12,6 +12,7 @@
       <class name="com.Testcases.TC_04_HOMEPAGE"/>
       <class name="com.Testcases.TC_05_ProfilePage"/>
       <class name="com.Testcases.TC_06_BookingFlow"/>
+      <class name="com.Testcases.DeleteAccounts"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
