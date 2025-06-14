@@ -135,7 +135,6 @@ public class TC_06_BookingFlow extends MobileAppWrappers{
 			homepage.clickInterestedText();
 			homepage.checkforInterestedOrder("Ac",connectsei_username);
 			closeApp(loadProp("APP_PACKAGE"));
-			/////////////////////////////////////////////////////////////////////////////
 			
 			  //navigate to connectsei and approve the service person
 			  openapp(loadProp("CONNECTSEI_APP_PACKAGE"));
