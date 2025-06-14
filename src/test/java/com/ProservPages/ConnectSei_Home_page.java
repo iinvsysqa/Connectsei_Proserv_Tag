@@ -1,9 +1,13 @@
 package com.ProservPages;
 
+import java.time.Duration;
+import java.util.Collections;
 import java.util.Iterator;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.PointerInput;
+import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -48,12 +52,34 @@ public class ConnectSei_Home_page extends GenericWrappers{
 	private WebElement AcceptButton;
 	@FindBy(xpath = "//*[@resource-id='CheckBoxfalse']") 
 	private WebElement CheckBoxfalse;
+	@FindBy(xpath = "//*[@resource-id='CompleteButton']") 
+	private WebElement CompleteButton;
+	@FindBy(xpath = "//*[@resource-id='Verify TechnicianTitle']") 
+	private WebElement VerifyTechnicianTitle;
+	@FindBy(xpath = "//*[@resource-id='Verify TechnicianButton']") 
+	private WebElement VerifyTechnicianButton;
+	@FindBy(xpath = "//*[@resource-id='ServiceTechnicianCard']") 
+	private WebElement ServiceTechnicianCard;
+	@FindBy(xpath = "//*[@resource-id='ServicePersonName']") 
+	private WebElement ServicePersonName;
+	@FindBy(xpath = "//*[@resource-id='Capture QR CodeButton']") 
+	private WebElement CaptureQRCodeButton;
+	@FindBy(xpath = "//*[@resource-id='HistoryButton']") 
+	private WebElement HistoryButton;
+	@FindBy(xpath = "//*[@resource-id='GiveRatingText']") 
+	private WebElement GiveRatingbtn;
 	@FindBy(xpath = "//*[@resource-id='AvailableTechnicianButton']") 
 	private WebElement AvailableTechnicianButton;
+	@FindBy(xpath = "//*[@resource-id='AcceptedButton']") 
+	private WebElement AcceptedButton;
 	@FindBy(xpath = "//android.widget.TextView[@text=\"OK\"]")
 	private WebElement OkButton;
-	@FindBy(xpath = "(//android.widget.TextView[@text=\"My Order\"])[2]")
+	@FindBy(xpath = "//android.widget.TextView[@text=\"My Order\"]")
 	private WebElement Myorderbtn_homepage;
+	@FindBy(xpath = "//android.widget.TextView[@text=\"Invoice Pending\"]")
+	private WebElement Invoicepopup;
+	@FindBy(xpath = "//android.widget.TextView[@text=\"OK\"]")
+	private WebElement OKpopup;
 //	@FindBy(xpath = "//*[@resource-id='SlotButton0']") 
 //	private WebElement SlotButton0;
 	private WebElement jobCard(int no) {
@@ -131,8 +157,6 @@ public class ConnectSei_Home_page extends GenericWrappers{
 	}
 	public void checkforPendingOrderstatus(String Productname) {
 		try {
-			
-		
 		for (int i = 0; i < 20; i++) {
 				jobCard(i);
 				String productname = jobCardproductname(i).getText();
@@ -140,7 +164,7 @@ public class ConnectSei_Home_page extends GenericWrappers{
 				System.out.println("product name"+productname);
 				
 				
-				if (productname.contains(Productname)) {
+				if (jobCardproductname(i).getText().contains(Productname)) {
 					clickbyXpath(jobCardproductname(i), Productname);
 					Reporter.reportStep( Productname+"field contains Service person accepted Product name: " + Productname, "PASS");
 					
@@ -148,11 +172,7 @@ public class ConnectSei_Home_page extends GenericWrappers{
 				}else{
 					System.out.println("Moving to next product");
 				}
-				
-				
-				
-				
-				}
+			}
 			}catch (Exception e) {
 				Reporter.reportStep("Page not displayed any products", "FAIL");
 				
@@ -175,6 +195,132 @@ public class ConnectSei_Home_page extends GenericWrappers{
 			}
 		}
 	}
+	public void verifyTechnician(String Productname) {
+
+		try {
+		for (int i = 0; i < 20; i++) {
+				jobCard(i);
+				String productname = jobCardproductname(i).getText();
+				
+				System.out.println("product name"+productname);
+				
+				
+				if (jobCardproductname(i).getText().contains(Productname)) {
+					clickbyXpath(jobCardproductname(i), Productname);
+					Reporter.reportStep( Productname+"field contains Service person accepted Product name: " + Productname, "PASS");
+					clickbyXpath(VerifyTechnicianButton, "Verify TechnicianButton");
+					verifyTextContainsByXpath(VerifyTechnicianTitle, "Verify Technician", "Verify Technician");
+					clickbyXpath(CaptureQRCodeButton, "CaptureQRCodeButton");
+					
+					break;
+				}else{
+					System.out.println("Moving to next product");
+				}
+			}
+			}catch (Exception e) {
+				Reporter.reportStep("Page not displayed any products", "FAIL");
+				
+		}
 	
+	}
+	public void clickCompleteBtn() {
+		clickbyXpath(CompleteButton, "CompleteButton");
+	}
+	public void checkInvoice() {
+		verifyTextContainsByXpath(Invoicepopup,"Invoice Pending" , "Invoice pop-up");
+		clickbyXpath(OKpopup, "Ok popup");
+	}
+	public void clickHistoryBtn() {
+		clickbyXpath(HistoryButton, "HistoryButton");
+	}
+	public void clickRatingBtn(String Productname,String servicePersonName) {
+		try {
+			for (int i = 0; i < 20; i++) {
+					jobCard(i);
+					String productname = jobCardproductname(i).getText();
+					
+					System.out.println("product name"+productname);
+					
+					
+					if (jobCardproductname(i).getText().contains(Productname)) {
+						clickbyXpath(jobCardproductname(i), Productname);
+						Reporter.reportStep( Productname+"field contains Service person accepted Product name: " + Productname, "PASS");
+						scrollToText("Service Technician Profile");
+						clickbyXpath(ServiceTechnicianCard, "ServiceTechnicianCard");
+						verifyTextContainsByXpath(ServicePersonName, servicePersonName, "ServicePersonName");
+						clickbyXpath(Backbutton, "Backbutton");
+						
+						clickbyXpath(GiveRatingbtn, "Give Rating Btn");
+						taprating();
+						tap();
+						
+						break;
+					}else{
+						System.out.println("Moving to next product");
+					}
+				}
+				}catch (Exception e) {
+					Reporter.reportStep("Page not displayed any products", "FAIL");
+					
+			}
+//		clickbyXpath(, Lastname)
+	}
 	
+	public void taprating() {
+
+		// 1. Get the screen dimensions (this part is the same)
+		int width = driver.manage().window().getSize().getWidth();
+		int height = driver.manage().window().getSize().getHeight();
+
+		// 2. Calculate the coordinates for the bottom-center tap
+		int tapX = width / 2;
+		// Use a value like 90% of the height to safely tap in the bottom region,
+		// avoiding the very edge of the screen or the system navigation bar.
+		int tapY = (int) (height * 0.50);
+
+		System.out.println("Tapping at bottom-center coordinates: x=" + tapX + ", y=" + tapY);
+
+		// 3. Define the tap action sequence
+		PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+		Sequence tap = new Sequence(finger, 1)
+		    // Move finger to the target coordinates
+		    .addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), tapX, tapY))
+		    // Finger presses down on the screen
+		    .addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+		    // Finger lifts up from the screen
+		    .addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+
+		// 4. Perform the tap action
+		driver.perform(Collections.singletonList(tap));
+	
+	}
+	public void tap() {
+		// 1. Get the screen dimensions (this part is the same)
+		int width = driver.manage().window().getSize().getWidth();
+		int height = driver.manage().window().getSize().getHeight();
+
+		// 2. Calculate the coordinates for the bottom-center tap
+		int tapX = width / 2;
+		// Use a value like 90% of the height to safely tap in the bottom region,
+		// avoiding the very edge of the screen or the system navigation bar.
+		int tapY = (int) (height * 0.90);
+
+		System.out.println("Tapping at bottom-center coordinates: x=" + tapX + ", y=" + tapY);
+
+		// 3. Define the tap action sequence
+		PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+		Sequence tap = new Sequence(finger, 1)
+		    // Move finger to the target coordinates
+		    .addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), tapX, tapY))
+		    // Finger presses down on the screen
+		    .addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+		    // Finger lifts up from the screen
+		    .addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+
+		// 4. Perform the tap action
+		driver.perform(Collections.singletonList(tap));
+	}
+	public void clickacceptedtab() {
+		clickbyXpath(AcceptedButton, "AcceptedTab");
+	}
 }

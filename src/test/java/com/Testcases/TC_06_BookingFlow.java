@@ -27,7 +27,7 @@ public class TC_06_BookingFlow extends MobileAppWrappers{
 	@BeforeClass
 	public void startTestCase() {
 		testCaseName = "TC_06_BookingFlow";
-		testDescription = "check Booking flow of User and Service person for recieved order";
+		testDescription = "check Booking flow ,Confirmation flow, job completion and Payment completion Flow of User and Service person for recieved order";
 	}
 	
 	String connectsei_username =loadProp("USERNAME_CONNECTSEI_2");
@@ -40,7 +40,7 @@ public class TC_06_BookingFlow extends MobileAppWrappers{
 	
 	
 	@Test(priority = 5)
-	public void TC_06_BookingFlow_Functionality() throws Exception {
+	public void TC_06_Booking_Confirmation_Completion_and_Payment_Flow() throws Exception {
 		initAndriodDriver();
 		loginpage= new Login_Page(driver);
 		registerpage = new Register_page(driver);
@@ -135,31 +135,60 @@ public class TC_06_BookingFlow extends MobileAppWrappers{
 			homepage.clickInterestedText();
 			homepage.checkforInterestedOrder("Ac",connectsei_username);
 			closeApp(loadProp("APP_PACKAGE"));
+			/////////////////////////////////////////////////////////////////////////////
 			
-			/*
-			 * //navigate to connectsei and approve the service person
-			 * openapp(loadProp("CONNECTSEI_APP_PACKAGE"));
-			 * connectseiHomepage.clickMyOrderbutton();
-			 * connectseiHomepage.navigatePendingpage();
-			 * connectseiHomepage.checkforPendingOrderstatus("AC");
-			 * connectseiHomepage.clickAvailableTechnicianButton();
-			 * connectseiHomepage.checkservicepersonname_and_accept(loadProp("USERNAMEINAPP"
-			 * )); connectseiHomepage.Connectsei_SearchInput();
-			 * 
-			 * //check for Accepted order in connectseiapp homepage.clickMyordericon();
-			 * serviceareazone.swipedown();
-			 * connectseiHomepage.checkforPendingOrderstatus("AC");
-			 * closeApp(loadProp("CONNECTSEI_APP_PACKAGE"));
-			 * 
-			 * //check for proserv My order page Accepted order
-			 * openapp(loadProp("APP_PACKAGE")); homepage.clickMyordericon();
-			 * serviceareazone.swipedown();
-			 * homepage.clickonJourneyStarted_Acceptedorder("Ac",connectsei_username );
-			 */
-			
-			
-			
-			
+			  //navigate to connectsei and approve the service person
+			  openapp(loadProp("CONNECTSEI_APP_PACKAGE"));
+			  connectseiHomepage.clickMyOrderbutton();
+			  connectseiHomepage.navigatePendingpage();
+			  connectseiHomepage.checkforPendingOrderstatus("AC");
+			  connectseiHomepage.clickAvailableTechnicianButton();
+			  connectseiHomepage.checkservicepersonname_and_accept(loadProp("USERNAMEINAPP"
+			  )); connectseiHomepage.Connectsei_SearchInput();
+			  
+			  //check for Accepted order in connectseiapp homepage.clickMyordericon();
+			  
+			  connectseiHomepage.clickMyOrderbutton();
+			  connectseiHomepage.clickacceptedtab();
+			  serviceareazone.swipedown();
+			  Thread.sleep(5000);
+			  connectseiHomepage.checkforPendingOrderstatus("AC");
+			  closeApp(loadProp("CONNECTSEI_APP_PACKAGE"));
+			  
+			  //check for proserv My order page Accepted order
+			  openapp(loadProp("APP_PACKAGE"));
+			  homepage.clickMyordericon();
+			  serviceareazone.swipedown();
+			  homepage.clickonJourneyStarted_Acceptedorder("Ac",connectsei_username );
+			 closeApp(loadProp("APP_PACKAGE"));
+			  
+			 //complete the order from user side
+			  openapp(loadProp("CONNECTSEI_APP_PACKAGE"));
+			  connectseiHomepage.clickMyOrderbutton();
+			  connectseiHomepage.verifyTechnician("AC");
+			  Thread.sleep(3000);
+			  serviceareazone.tap();
+			  Thread.sleep(3000);
+			  connectseiHomepage.clickCompleteBtn();
+			  connectseiHomepage.checkInvoice();
+			  closeApp(loadProp("CONNECTSEI_APP_PACKAGE"));
+			  
+			  //proservv invoice handling
+			  openapp(loadProp("APP_PACKAGE"));
+			  homepage.clickMyordericon();
+			  serviceareazone.swipedown();
+			  homepage.invoicehandling("Ac", connectsei_username);
+			  registerpage.checknotificationbutton();
+			 closeApp(loadProp("APP_PACKAGE"));
+			  
+			 openapp(loadProp("CONNECTSEI_APP_PACKAGE"));
+			  connectseiHomepage.clickMyOrderbutton();
+			  connectseiHomepage.clickHistoryBtn();
+			  connectseiHomepage.clickRatingBtn("AC", loadProp("USERNAMEINAPP"));
+			  connectseiHomepage.taprating();
+			  connectseiHomepage.Connectsei_SearchInput();
+			  closeApp(loadProp("CONNECTSEI_APP_PACKAGE"));
+			  
 			 //need to delete connectsei account after issue resolved by service person
 			
 //			registerpage.deleteAccount();//unable to delete account if service person or user has current job

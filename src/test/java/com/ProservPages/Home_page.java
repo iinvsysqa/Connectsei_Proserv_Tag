@@ -52,7 +52,21 @@ public class Home_page extends GenericWrappers{
 	@FindBy(xpath = "//*[@resource-id='QRCode']")
 	private WebElement QRCode;
 	
+	@FindBy(xpath = "//*[@resource-id='ArrivedText']")
+	private WebElement ArrivedText;
 	
+	@FindBy(xpath = "//*[@resource-id='SummaryTextInput']")
+	private WebElement SummaryTextInput;
+	
+	@FindBy(xpath = "//*[@resource-id='AdditionalInputIG']")
+	private WebElement AdditionalInputIG;
+	
+	@FindBy(xpath = "//*[@resource-id='Generate InvoiceButton']")
+	private WebElement GenerateInvoiceButton;
+	
+	@FindBy(xpath = "//*[@resource-id='Payment ReceivedText']")
+	private WebElement PaymentReceivedText;
+		
 	
 	@FindBy(xpath = "//*[@resource-id='available_jobs_title']")
 	private WebElement available_jobs_title;
@@ -234,9 +248,9 @@ public class Home_page extends GenericWrappers{
 		
 			for (int i = 0; i < 20; i++) {
 				System.out.println("I value :"+i);
-	//			jobCard(i);
+				jobCard(i);
 				
-				if (isElementDisplayed(NojobPlaceholder, "No job placeholder")) {
+				if (isElementDisplayedCheck(NojobPlaceholder)) {
 					Reporter.reportStep( Productname+" field not contains old location jobs" , "FAIL");
 					break;
 				}else if ( jobCardproductname(i).getText().contains(Productname)&&jobCardusername(i).getText().startsWith(Username)) {
@@ -245,8 +259,39 @@ public class Home_page extends GenericWrappers{
 					scrollToText("Journey Started");
 					verifyTextContainsByXpath(ContactNumberValue, loadProp("MOBILENUMBER_CONNECTSEI_2"), "Check user Mobile number");
 					clickbyXpath(JourneyStartedButton, "Journey Started button");
-//					clickbyXpath(, );
+					clickbyXpath(ArrivedText,"ArrivedText" );
 					isElementDisplayedCheck(QRCode);
+					break;
+				}else{
+					System.out.println("Moving to next product");
+				}
+				
+			}
+		
+		}catch (Exception e) {
+			Reporter.reportStep("Something went wrong"+e, "FAIL");
+			
+		}
+	}
+	
+	public void invoicehandling(String Productname,String Username) {
+		try {
+			
+			
+			for (int i = 0; i < 20; i++) {
+				System.out.println("I value :"+i);
+				jobCard(i);
+				
+				if (isElementDisplayedCheck(NojobPlaceholder)) {
+					Reporter.reportStep( Productname+" field not contains old location jobs" , "FAIL");
+					break;
+				}else if ( jobCardproductname(i).getText().contains(Productname)&&jobCardusername(i).getText().startsWith(Username)) {
+					Reporter.reportStep("User Accepted job displayed in Accepted order page ", "PASS");
+					clickbyXpath(jobCardproductname(i), "Product-"+Productname);
+					entervaluebyXpath(SummaryTextInput, "SummaryTextInput", "Work has been completed");
+					entervaluebyXpath(AdditionalInputIG, "AdditionalInputIG", "100");
+					clickbyXpath(GenerateInvoiceButton, "Generate InvoiceButton");
+					clickbyXpath(PaymentReceivedText, "Payment ReceivedText");
 					break;
 				}else{
 					System.out.println("Moving to next product");
