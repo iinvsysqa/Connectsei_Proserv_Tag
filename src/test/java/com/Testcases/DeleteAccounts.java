@@ -70,7 +70,7 @@ public class DeleteAccounts extends MobileAppWrappers{
 			registerpage.Connectsei_enterPassword(Password);
 			registerpage.Connecsei_clickLogin();
 			registerpage.popup_okBtn();
-			registerpage.checkHomepageAdvertisement();
+			connectseiHomepage.Connectsei_SearchInput();
 			registerpage.clickProfileIcon();
 			registerpage.Connecsei_deleteAccount();
 			registerpage.popup_okBtn();

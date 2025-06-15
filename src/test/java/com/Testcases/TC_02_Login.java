@@ -35,7 +35,7 @@ public class TC_02_Login extends MobileAppWrappers{
 		try {
 			registerpage.WifiSwitch(loadProp("WIFINAME"), loadProp("WIFIPASSWORD"),loadProp("APP_PACKAGE"));
 			uninstall_reinstall();
-			loginpage.enterMobileno(randomnumbers(10));
+			loginpage.enterMobileno(9+randomnumbers(9));
 			loginpage.enterPassword("User"+"@#"+randomnumbers(3));
 			loginpage.clickLogin();
 			loginpage.checkMobilenoToast();
