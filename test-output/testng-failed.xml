@@ -9,9 +9,9 @@
       <class name="com.Connectsei_testcases_login_module.TC05_ProfilePage">
         <methods>
           <include name="beforeMethod"/>
-          <include name="Profile_Page_UI_And_Functional_Check"/>
-          <include name="afterTest"/>
           <include name="startTestCase"/>
+          <include name="afterTest"/>
+          <include name="Connectsei_Profile_Page_UI_And_Functional_Check"/>
           <include name="beforeSuite"/>
           <include name="afterSuite"/>
           <include name="afterMethod"/>

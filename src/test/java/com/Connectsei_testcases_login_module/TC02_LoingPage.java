@@ -27,8 +27,7 @@ public class TC02_LoingPage extends MobileAppWrappers {
 	
 
 	@Test
-
-	public void Login_Page_UI_And_Functional_Check() throws InterruptedException, Exception, IOException {
+	public void Connectsei_Login_Page_UI_And_Functional_Check() throws InterruptedException, Exception, IOException {
 		initAndriodDriver();
 	   
 		registerpage = new RegisterPage(driver);

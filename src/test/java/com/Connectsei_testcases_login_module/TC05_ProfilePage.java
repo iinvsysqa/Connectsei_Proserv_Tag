@@ -38,7 +38,7 @@ public class TC05_ProfilePage extends MobileAppWrappers {
 
 	@Test
 
-	public void Profile_Page_UI_And_Functional_Check() throws InterruptedException, Exception, IOException {
+	public void Connectsei_Profile_Page_UI_And_Functional_Check() throws InterruptedException, Exception, IOException {
 		initAndriodDriver();
 		
 		
@@ -109,7 +109,8 @@ public class TC05_ProfilePage extends MobileAppWrappers {
 		register_page.clickSaveBtn();
 		register_page.verifyAddressline_Toast();
 		
-		register_page.LogoutProserv();
+		
+		register_page.checkforLogoutandclickback();
 		register_page.popup_okBtn();
 		
 		login_page.login(loadProp("MOBILENUMBER"),loadProp("PASSWORD"));

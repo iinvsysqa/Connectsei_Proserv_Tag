@@ -5,10 +5,14 @@
     <listener class-name="com.utils.ResultListener"/>
   </listeners>
   <test thread-count="5" name="Test">
-    <packages>
-      <package name="com.Connectsei_testcases_login_module"/>
-    </packages>
+    
      <classes>
+     
+      <class name="com.Connectsei_testcases_login_module.TC01_RegisterPage"/>
+      <class name="com.Connectsei_testcases_login_module.TC02_LoingPage"/>
+      <class name="com.Connectsei_testcases_login_module.TC03_ForgotPasswordPage"/>
+      <class name="com.Connectsei_testcases_login_module.TC04_HomePage"/>
+      <class name="com.Connectsei_testcases_login_module.TC05_ProfilePage"/>
       <class name="com.Testcases.TC_01_Register"/>
       <class name="com.Testcases.TC_02_Login"/>
       <class name="com.Testcases.TC_03_ForgetPassword"/>

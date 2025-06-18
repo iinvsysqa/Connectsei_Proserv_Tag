@@ -177,7 +177,8 @@ public class Register_page extends GenericWrappers{
 	private WebElement EditAddressTitle;
 	@FindBy(xpath = "//*[@resource-id='AddressData0']")
 	private WebElement ConnectseiAddressData;
-	
+	@FindBy(xpath = "//*[@resource-id='BackIconSVG']")
+	private WebElement backIcon;
 	
 	private WebElement Productname(int no) {
 		return driver.findElement(By.xpath("//*[@resource-id='product_name_"+no+"']"));
@@ -570,5 +571,12 @@ public class Register_page extends GenericWrappers{
 		public void clickonProductName(int num,String Productname) {
 			clickbyXpath(Productname(num), Productname);
 		}
-	  
+	  public void checkforLogoutandclickback() {
+		  if (isElementDisplayedCheck(LogoutBtn)) {
+			clickbyXpath(LogoutBtn, "Logout button");
+		}else {
+			clickbyXpath(backIcon, "Back icon");
+			clickbyXpath(LogoutBtn, "Logout button");
+		}
+	}
 }

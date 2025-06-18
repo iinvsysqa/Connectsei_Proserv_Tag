@@ -23,14 +23,14 @@ public class TC01_RegisterPage extends MobileAppWrappers {
 	
 	@BeforeClass
 	public void startTestCase() {
-		testCaseName = "TC01 - Invalid & Valid Register";
+		testCaseName = "TC01 - Connectsei Invalid & Valid Register";
 		testDescription = "Register With Invalid And Valid Mobile Number";
 	}
 	
 
 	@Test
 
-	public void Register_Page_UI_And_Functional_Check() throws InterruptedException, Exception, IOException {
+	public void Connectsei_Register_Page_UI_And_Functional_Check() throws InterruptedException, Exception, IOException {
 		initAndriodDriver();
 		
 		

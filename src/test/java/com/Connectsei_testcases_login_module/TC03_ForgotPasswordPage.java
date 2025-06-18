@@ -37,8 +37,7 @@ public class TC03_ForgotPasswordPage extends MobileAppWrappers {
 		
 
 		@Test
-
-		public void Forgot_Password_Field_UI_And_Functional_Check() throws InterruptedException, Exception, IOException {
+		public void Connectsei_Forgot_Password_Field_UI_And_Functional_Check() throws InterruptedException, Exception, IOException {
 			initAndriodDriver();
 		   
 			registerpage = new RegisterPage(driver);

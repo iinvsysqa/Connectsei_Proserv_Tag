@@ -30,7 +30,7 @@ public class TC04_HomePage extends MobileAppWrappers {
 
 	@Test
 
-	public void Notification_And_Home_Page_UI_And_Functional_Check() throws InterruptedException, Exception, IOException {
+	public void Connectsei_Notification_And_Home_Page_UI_And_Functional_Check() throws InterruptedException, Exception, IOException {
 		initAndriodDriver();
 		
 		
