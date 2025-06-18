@@ -132,6 +132,8 @@ public class Register_page extends GenericWrappers{
 	private WebElement LogoutBtn;
 	@FindBy(xpath = "//*[@resource-id='AccountDeleteButton']")
 	private WebElement AccountDeleteButton;
+	@FindBy(xpath = "//*[@resource-id='DeleteAccountButton']")
+	private WebElement ConnectseiAccountDeleteButton;
 	@FindBy(xpath = "//android.widget.Button[@text=\"OK\"]")
 	private WebElement PopupOkbtn;
 	@FindBy(xpath = "//android.widget.Button[@text=\"CANCEL\"]")
@@ -157,6 +159,8 @@ public class Register_page extends GenericWrappers{
 	
 	@FindBy(xpath = "//*[@resource-id='NewAddress']")
 	private WebElement ConfirmLocation_Addresstext;
+	@FindBy(xpath = "//*[@resource-id='address']")
+	private WebElement Connectsei_Addresstext;
 	@FindBy(xpath = "//*[@resource-id='FirstNameText']")
 	private WebElement EditAddress_Homebtn_afterregister;
 	@FindBy(xpath = "//*[@resource-id='SecondNameText']")
@@ -171,6 +175,9 @@ public class Register_page extends GenericWrappers{
 	private WebElement AddressDownArrow;
 	@FindBy(xpath = "//*[@resource-id='Edit AddressTitle']")
 	private WebElement EditAddressTitle;
+	@FindBy(xpath = "//*[@resource-id='AddressData0']")
+	private WebElement ConnectseiAddressData;
+	
 	
 	private WebElement Productname(int no) {
 		return driver.findElement(By.xpath("//*[@resource-id='product_name_"+no+"']"));
@@ -429,6 +436,7 @@ public class Register_page extends GenericWrappers{
 			String editeddtext =ConfirmLocation_Addresstext.getText();
 			setLoadProp("HOMEADDRESS", editeddtext);
 	}
+	  
 	   public void saveOfficeLocation() {
 		   String Officeaddress = Home_address.getText();
 		   setLoadProp("OFFICEADDRESS", Officeaddress);
@@ -437,6 +445,7 @@ public class Register_page extends GenericWrappers{
 	   public void verifyAlreadyEditedHomeaddress() {
 			verifyTextContainsByXpath(Home_address,loadProp("HOMEADDRESS"), "Edited  address: "+loadProp("HOMEADDRESS"));
 			}
+	  
 	   public void verifyAlreadyEditedOfficeAddress() {
 		   verifyTextContainsByXpath(Home_address,loadProp("OFFICEADDRESS"), "Edited  address: "+loadProp("OFFICEADDRESS"));
 		   
@@ -476,6 +485,11 @@ public class Register_page extends GenericWrappers{
 //		 popup_okBtn();
 	   }
 	   
+	   public void ConnectseiDeleteAccount() {
+		   clickProfileIcon();
+		   clickbyXpath(Connectsei_DeleteAccount, "Connectsei DeletAcnt");
+			popup_okBtn();
+	}
 	   public void registeraccount(String username,String Lastname,String Password) {
 		  setLoadProp("MOBILENUMBER_CONNECTSEI_2", 9+randomnumbers(9));
 		  System.out.println(loadProp("MOBILENUMBER_CONNECTSEI_2"));

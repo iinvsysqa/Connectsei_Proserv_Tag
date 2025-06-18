@@ -3,18 +3,18 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.Testcases.TC_06_BookingFlow">
+      <class name="com.Connectsei_testcases_login_module.TC05_ProfilePage">
         <methods>
-          <include name="TC_06_BookingFlow_Functionality"/>
           <include name="beforeMethod"/>
-          <include name="afterTest"/>
+          <include name="Profile_Page_UI_And_Functional_Check"/>
           <include name="startTestCase"/>
+          <include name="afterTest"/>
           <include name="beforeSuite"/>
           <include name="afterSuite"/>
           <include name="afterMethod"/>
           <include name="beforeTest"/>
         </methods>
-      </class> <!-- com.Testcases.TC_06_BookingFlow -->
+      </class> <!-- com.Connectsei_testcases_login_module.TC05_ProfilePage -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

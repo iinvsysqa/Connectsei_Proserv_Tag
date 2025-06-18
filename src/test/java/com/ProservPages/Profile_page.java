@@ -32,6 +32,8 @@ public class Profile_page  extends GenericWrappers{
 	private WebElement ProfileIcon;
 	@FindBy(xpath = "//*[@resource-id='ProfileTitleName0']")
 	private WebElement YourProfileIcon;
+	@FindBy(xpath = "//*[@resource-id='My ProfileTitle']")
+	private WebElement ConnectseiYourProfileIcon;
 	@FindBy(xpath = "//*[@resource-id='ProfileTitleName1']")
 	private WebElement JobServcieListIcon;
 	@FindBy(xpath = "//*[@resource-id='ProfileTitleName2']")
@@ -50,6 +52,10 @@ public class Profile_page  extends GenericWrappers{
 	private WebElement Profilepage_Username;
 	@FindBy(xpath = "//*[@resource-id='mobile_number']")
 	private WebElement Profilepage_MobileNumber;
+	
+	@FindBy(xpath = "//*[@resource-id='MobileNumber']")
+	private WebElement Connectsei_Profilepage_MobileNumber;
+	
 	@FindBy(xpath = "//*[@resource-id='ProfileImage']")
 	private WebElement Profilepage_ProfileImage;
 	@FindBy(xpath = "//android.widget.Toast[@text=\"Account deleted successfully\"]")
@@ -70,6 +76,14 @@ public class Profile_page  extends GenericWrappers{
 	private WebElement Profile_mobileno_editicon;
 	@FindBy(xpath = "//*[@resource-id='UserDetailsEditIconButton3']")
 	private WebElement Profile_Password_editicon;
+	@FindBy(xpath = "//*[@resource-id='EditButton0']")
+	private WebElement ConnectseiProfile_username_editicon;
+	@FindBy(xpath = "//*[@resource-id='EditButton1']")
+	private WebElement ConnectseiProfile_emailid_editicon;
+	@FindBy(xpath = "//*[@resource-id='EditButton2']")
+	private WebElement ConnectseiProfile_mobileno_editicon;
+	@FindBy(xpath = "//*[@resource-id='EditText3']")
+	private WebElement ConnectseiProfile_Password_editicon;
 	@FindBy(xpath = "//*[@resource-id='EditIconButton']")
 	private WebElement Profile_Profileediticon;
 	@FindBy(xpath = "//*[@resource-id='first_nameInput']")
@@ -140,8 +154,8 @@ public class Profile_page  extends GenericWrappers{
 	private WebElement KYCVerificationTitle;
 	@FindBy(xpath = "//*[@resource-id='GalaryButton']")
 	private WebElement uploadImage;
-//	@FindBy(xpath = "//*[@resource-id='']")
-//	private WebElement ;
+	@FindBy(xpath = "//*[@resource-id='CardTitleName1']")
+	private WebElement ConnectseiAddressesbutton;
 //	@FindBy(xpath = "//*[@resource-id='']")
 //	private WebElement ;
 //	@FindBy(xpath = "//*[@resource-id='']")
@@ -173,9 +187,14 @@ public class Profile_page  extends GenericWrappers{
 		verifyTextContainsByXpath(Profilepage_MobileNumber,mobilenumber , "Profilepage_MobileNumber");
 		
 	}
+	public void verifyConnectsei_ProfilepageMobileNo() {
+		verifyTextContainsByXpath(Connectsei_Profilepage_MobileNumber,mobilenumber , "Profilepage_MobileNumber");
+		
+	}
 	public void clickonYourProfile() {
 		clickbyXpath(YourProfileIcon, "YourProfileIcon");
 	}
+	
 	public void clickonJobserviceList() {
 		clickbyXpath(JobServcieListIcon, "JobServcieListIcon");
 		
@@ -210,19 +229,37 @@ public class Profile_page  extends GenericWrappers{
 		clickbyXpath(Profile_username_editicon, "Profile_username_editicon");
 
 	}
+	public void ConnectseiclickProfile_Usernameediticon() {
+		clickbyXpath(ConnectseiProfile_username_editicon, "Profile_username_editicon");
+		
+	}
 	public void clickProfile_Emailidediticon() {
 		clickbyXpath(Profile_emailid_editicon, "Profile_emailid_editicon");
 		
 
+	}
+	public void ConnectseiclickProfile_Emailidediticon() {
+		clickbyXpath(ConnectseiProfile_emailid_editicon, "Profile_emailid_editicon");
+		
+		
 	}
 	public void clickProfile_mobilenoediticon() {
 		clickbyXpath(Profile_mobileno_editicon, "Profile_mobileno_editicon");
 		
 
 	}
+	public void ConnectseiclickProfile_mobilenoediticon() {
+		clickbyXpath(ConnectseiProfile_mobileno_editicon, "Profile_mobileno_editicon");
+		
+		
+	}
 	public void clickProfile_Passwordediticon() {
 		clickbyXpath(Profile_Password_editicon, "Profile_Password_editicon");
 
+	}
+	public void ConnectseiclickProfile_Passwordediticon() {
+		clickbyXpath(ConnectseiProfile_Password_editicon, "Profile_Password_editicon");
+		
 	}
 	public void clearandmodifyFirstname(String firstname) {
 		Profile_editnamepage_firstnameinput.clear();
@@ -249,6 +286,10 @@ public class Profile_page  extends GenericWrappers{
 	}
 	public void verifyOTPfielderrormsg() {
 		verifyTextContainsByXpath(EmailIderrormsg, "Email is required.", "Email error message");
+		
+	}
+	public void ConnectseiverifyOTPfielderrormsg() {
+		verifyTextContainsByXpath(EmailIderrormsg, "Email is required", "Email error message");
 		
 	}
 	public void verifyOTPtitle() {
@@ -351,5 +392,8 @@ public class Profile_page  extends GenericWrappers{
         JavascriptExecutor js = (JavascriptExecutor)driver;
         js.executeScript("arguments[0].value = arguments[1];", element, base64Image);
     }
+    public void clickConnectseiAddressesbutton() {
+    	clickbyXpath(ConnectseiAddressesbutton, "Connectsei Addresses button");
+	}
 	
 }

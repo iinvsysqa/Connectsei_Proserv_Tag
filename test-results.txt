@@ -1,0 +1,8 @@
+PASSED_COUNT=4
+PASS:Register_Page_UI_And_Functional_Check
+PASS:Notification_And_Home_Page_UI_And_Functional_Check
+PASS:Forgot_Password_Field_UI_And_Functional_Check
+PASS:Login_Page_UI_And_Functional_Check
+FAILED_COUNT=1
+FAIL:Profile_Page_UI_And_Functional_Check
+SKIPPED_COUNT=0
